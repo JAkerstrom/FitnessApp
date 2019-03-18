@@ -1,0 +1,8 @@
+C:\Dev\Privat\FitnessApp\fitnessData\bin\Debug\netcoreapp2.2\fitnessData.deps.json
+C:\Dev\Privat\FitnessApp\fitnessData\bin\Debug\netcoreapp2.2\fitnessData.dll
+C:\Dev\Privat\FitnessApp\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.csprojAssemblyReference.cache
+C:\Dev\Privat\FitnessApp\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.csproj.CoreCompileInputs.cache
+C:\Dev\Privat\FitnessApp\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.AssemblyInfoInputs.cache
+C:\Dev\Privat\FitnessApp\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.AssemblyInfo.cs
+C:\Dev\Privat\FitnessApp\fitnessData\bin\Debug\netcoreapp2.2\fitnessData.runtimeconfig.json
+C:\Dev\Privat\FitnessApp\fitnessData\bin\Debug\netcoreapp2.2\fitnessData.runtimeconfig.dev.json
