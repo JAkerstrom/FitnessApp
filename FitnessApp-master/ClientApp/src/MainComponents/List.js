@@ -43,7 +43,6 @@ export default class List extends React.Component {
                                 <div className="col-10 col-sm-8">
                                     <div className="col-12"><p>{item.dateTime}</p></div>
                                     <div className="col-12"><h3>{item.excercise.name}</h3></div>
-
                                 </div>
                                 <div className="col-2 col-sm-4">
                                     <button onClick={this.toggleDone} className="btn btn-sm pull-right align-middle" style={btnStyle}>Done?</button>
@@ -54,7 +53,6 @@ export default class List extends React.Component {
                     }
                 </ul>
             </div>
-
         );
     }
 }

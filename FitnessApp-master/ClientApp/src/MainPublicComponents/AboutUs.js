@@ -21,7 +21,6 @@ class AboutUs extends React.Component {
                         <li>Vestibulum vulputate</li>
                     </ol>
                 </div>
-
             </div>
         );
     }

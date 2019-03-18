@@ -1,4 +1,4 @@
-﻿using Data.DataModels;
+﻿using fitnessData.DataModels;
 using System.Collections.Generic;
 
 namespace fitnessapp.ViewModels

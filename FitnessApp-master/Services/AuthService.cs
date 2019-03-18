@@ -1,12 +1,10 @@
-﻿using Data.Auth;
-using Data.Utils;
-using fitnessapp.Models;
+﻿using fitnessapp.Models;
 using fitnessapp.Models.RequestModels;
 using fitnessapp.Models.ResponseModels;
+using fitnessData.Auth;
+using fitnessData.Utils;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace fitnessapp.Services
 {

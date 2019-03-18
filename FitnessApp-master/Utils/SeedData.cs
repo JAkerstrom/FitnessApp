@@ -1,4 +1,4 @@
-﻿using Data.DataModels;
+﻿using fitnessData.DataModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;

@@ -11,7 +11,6 @@ class Home extends React.Component {
         }
 
         return (
-
             <div className="card" style={cardStyle}>
                 <div className="card-body">
                     <h2>Home</h2>
@@ -22,7 +21,6 @@ class Home extends React.Component {
                         <li>Vestibulum vulputate</li>
                     </ol>
                 </div>
-
             </div>
         );
     }

@@ -1,5 +1,5 @@
-﻿using Data.Auth;
-using Data.Utils;
+﻿using fitnessData.Auth;
+using fitnessData.Utils;
 using fitnessapp.Models;
 using fitnessapp.Models.RequestModels;
 using fitnessapp.Models.ResponseModels;

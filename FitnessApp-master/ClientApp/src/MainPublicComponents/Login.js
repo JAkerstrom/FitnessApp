@@ -36,10 +36,8 @@ export default class Login extends React.Component {
 
 
         return (
-
             <div className="card" style={cardStyle}>
                 <div className="card-body">
-
                     <div className="col-6 col-md-offset-3 card">
                         <form className="form" style={formStyle}>
                             <div className="form-group">
@@ -49,9 +47,7 @@ export default class Login extends React.Component {
                             </div>
                         </form>
                     </div>
-
                 </div>
-
             </div>
         );
     }

@@ -1,5 +1,5 @@
-using Data.Auth;
-using Data.DataModels;
+using fitnessData.Auth;
+using fitnessData.DataModels;
 using fitnessapp.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -23,7 +23,6 @@ namespace fitnessapp
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(options =>
@@ -44,7 +43,6 @@ namespace fitnessapp
             services.AddScoped<AuthService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

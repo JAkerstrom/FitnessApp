@@ -1,4 +1,4 @@
-﻿using Data.DataModels;
+﻿using fitnessData.DataModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;

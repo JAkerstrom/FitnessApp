@@ -1,6 +1,4 @@
-﻿
-
-namespace fitnessData.DataModels
+﻿namespace fitnessData.DataModels
 {
     public class Excercise
     {
