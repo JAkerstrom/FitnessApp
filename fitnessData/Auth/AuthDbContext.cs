@@ -22,7 +22,7 @@ namespace fitnessData.Auth
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<ApplicationUser>().HasData(
-               ApplicationUser.Create(1, "johanna", "Test@Email.com", "Password", "secretToken1")
+               ApplicationUser.Create(1, "Anna", "w@w.w", "www", "", 0)
            );
         }
     }

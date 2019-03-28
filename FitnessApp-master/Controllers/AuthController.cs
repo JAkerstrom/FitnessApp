@@ -9,6 +9,11 @@ namespace fitnessapp.Controllers
     [Route("[controller]/[action]")]
     public class AuthController : Controller
     {
+        private static int LOGIN = 1;
+        private static int REGISTER = 2;
+        private static int UPDATE = 3;
+        private static int DEFAULT = 4;
+
         private UserService _userService;
         private AuthService _authService;
 
@@ -24,34 +29,29 @@ namespace fitnessapp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return ResponseVM.Create("", false, "invalid model", ""); //om modelstate är invalid är det något fel i reactkoden
+                return ResponseVM.Create("", false, "invalid model", DEFAULT, ""); 
             }
 
             return _authService.Logout(logout);
         }
 
         [HttpPost]
-        public LoginResponse Login([FromBody]LoginRequest login)
+        public ResponseVM Login([FromBody]LoginRequest login)
         {
             if (!ModelState.IsValid)
             {
-                return new LoginResponse()
-                {
-                    Message = "Please enter a valid email and password",
-                    RequestSuccess = false,
-                    ReturnUrl = login.ReturnUrl,
-                    NextUrl = ""
-                };
+                return ResponseVM.Create("", false, "Please enter a valid email and password", LOGIN, "");
             }
 
             return _authService.ValidateLogin(login);
         }
 
+        [HttpPost]
         public ResponseVM Register([FromBody]RegisterRequest request)
         {
             if (!ModelState.IsValid)
             {
-                return ResponseVM.Create("", false, "invalid model", "");
+                return ResponseVM.Create("", false, "invalid model", REGISTER, "");
             }
             return _userService.CreateNew(request);
         }

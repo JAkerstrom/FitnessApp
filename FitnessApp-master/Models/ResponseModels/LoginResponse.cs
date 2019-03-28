@@ -7,7 +7,6 @@ namespace fitnessapp.Models.ResponseModels
 {
     public class LoginResponse : ResponseVM
     {
-        public UserDTO User { get; set; }
         public string  Token { get; set; }
 
         public static LoginResponse Create(string message, string nexturl, 

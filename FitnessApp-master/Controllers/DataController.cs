@@ -25,7 +25,7 @@ namespace fitnessapp.Controllers
         [HttpGet("{id}")]
         public User Get(int id)
         {
-            return _context.Users.Where(u => u.Id == id).FirstOrDefault();
+            return _context.Users.Find(id);
         }
 
         [HttpGet("[action]/{id}")]
@@ -34,7 +34,7 @@ namespace fitnessapp.Controllers
             var workouts = _context.Workouts.Where(w => w.UserId == id)
                 .Include(e => e.Excercise)
                 .ToList();
-            var user = _context.Users.Where(u => u.Id == id).FirstOrDefault();
+            var user = _context.Users.Find(id);
 
             return new WorkoutsVM()
             {

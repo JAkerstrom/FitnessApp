@@ -26,14 +26,10 @@ namespace fitnessData.Utils
             return sb.ToString();
         }
 
-        public void VerifyMD5Hash()
-        {
-            //not implemented
-        }
-
         public static bool VerifyPassword(string password, string passwordHash)
         {
-            return true;
+            var submittedpassword = GetMD5Hash(password);
+            return submittedpassword == passwordHash;
         }
 
         public static string CreateToken(int userId)
