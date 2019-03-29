@@ -12,10 +12,10 @@ namespace fitnessData.Auth
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string Token { get; set; }
-        public DateTime TimeToLive { get; set; }
+        public long TimeToLive { get; set; }
 
         public static ApplicationUser Create(int id, string username, string email,
-                                            string password, string token)
+                                            string password, string token, long timetolive)
         {
             return new ApplicationUser()
             {
@@ -24,13 +24,13 @@ namespace fitnessData.Auth
                 Email = email,
                 PasswordHash = CryptoUtils.GetMD5Hash(password),
                 Token = token,
-                TimeToLive = DateTime.Now.AddMinutes(30),
+                TimeToLive = timetolive,
             };
         }
 
         public bool TokenExpired()
         {
-            return TimeToLive < DateTime.Now;
+            return TimeToLive < DateUtils.TimeStampNow;
         }
     }
 }

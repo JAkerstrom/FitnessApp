@@ -10,6 +10,11 @@ namespace fitnessapp.Services
 {
     public class AuthService
     {
+        private static int LOGIN = 1;
+        private static int REGISTER = 2;
+        private static int UPDATE = 3;
+        private static int DEFAULT = 4;
+
         private AuthDbContext _userContext;
 
         public AuthService(AuthDbContext userContext)
@@ -17,25 +22,25 @@ namespace fitnessapp.Services
             _userContext = userContext;
         }
 
-        public LoginResponse ValidateLogin(LoginRequest login) {
+        public ResponseVM ValidateLogin(LoginRequest login) {
 
             if (!EmailExists(login.Email))
             {
-                return Response("Invalid signin credentials", false, login.ReturnUrl, ""); 
+                return ResponseVM.Create(login.ReturnUrl, false, "Invalid signin credentials", LOGIN, ""); 
             }
 
             var user = _userContext.Users.FirstOrDefault(u => u.Email == login.Email);
 
             if (!CryptoUtils.VerifyPassword(login.Password, user.PasswordHash))
             {
-                return Response("Invalid signin credentials", false, login.ReturnUrl, "");
+                return ResponseVM.Create(login.ReturnUrl, false ,"Invalid signin credentials", LOGIN, "");
             }
 
             user = CreateToken(user);
 
             var userdto = UserDTO.Create(user);
 
-            return Response("", true, "data/index", "data/index", userdto, user.Token);
+            return ResponseVM.Create("", true, "", DEFAULT, "", userdto);
 
         }
 
@@ -45,14 +50,14 @@ namespace fitnessapp.Services
             ApplicationUser user = _userContext.Users.Find(logout.UserId);
 
             if (user == null) {
-                return ResponseVM.Create("", false, "no such user", "");
+                return ResponseVM.Create("", false, "no such user", DEFAULT, "");
             }
 
             user.Token = "";
-            //user.timetolive = 0; //ändra till long
+            user.TimeToLive = 0; 
             _userContext.SaveChanges();
 
-            return ResponseVM.Create("", true, "user logged out", "");
+            return ResponseVM.Create("", true, "user logged out", DEFAULT, "");
 
         }
 
@@ -73,33 +78,19 @@ namespace fitnessapp.Services
             return true;
         }
 
-        public ApplicationUser CreateToken(ApplicationUser user)
+        private ApplicationUser CreateToken(ApplicationUser user)
         {
             var token = CryptoUtils.CreateToken(user.Id);
             user.Token = token;
-            user.TimeToLive = DateTime.Now.AddMinutes(30);
+            user.TimeToLive = DateUtils.TimeStampOneDay;
             _userContext.Update(user);
             _userContext.SaveChanges();
             return user;
         }
 
-        public bool EmailExists(string email)
+        private bool EmailExists(string email)
         {
             return _userContext.Users.Any(u => u.Email == email);
         }       
-
-        public LoginResponse Response(string message, bool success, string returnUrl, string nextUrl, UserDTO user = null, string token = null)
-        {
-            return new LoginResponse()
-            {
-                Message = message,
-                RequestSuccess = success,
-                ReturnUrl = returnUrl,
-                NextUrl = nextUrl,
-                User = user ?? null,
-                Token = token ?? null
-            };
-        }
-
     }
 }
