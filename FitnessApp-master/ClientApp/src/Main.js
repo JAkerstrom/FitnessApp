@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { Route, HashRouter } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, NavLink, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 //HOC
 import HOC from './HOCs/APIservice';
@@ -18,10 +18,10 @@ class Main extends Component{
    
     render() {
         return (
-            <HashRouter>
-                <div className="container-fluid">
-                    {this.props.user === "" ? <Jumbotron /> : <div></div>}
-                    <Navbar user={this.props.user} logout={this.props.logout} />
+            <div className="container-fluid">
+                {this.props.user === "" ? <Jumbotron /> : <div></div>}
+                <Navbar user={this.props.user} logout={this.props.logout} />
+                <Switch>
                     <Container
                         user={this.props.user}
                         message={this.props.message}
@@ -30,8 +30,8 @@ class Main extends Component{
                         register={this.props.register}
                         update={this.props.update}
                         delete={this.props.delete} />
-                </div>
-            </HashRouter>
+                </Switch>
+            </div>
             )
     }
 }
