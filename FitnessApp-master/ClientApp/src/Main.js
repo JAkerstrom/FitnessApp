@@ -20,8 +20,7 @@ class Main extends Component{
         return (
             <div className="container-fluid">
                 {this.props.user === "" ? <Jumbotron /> : <div></div>}
-                <Navbar user={this.props.user} logout={this.props.logout} />
-                <Switch>
+                <Navbar user={this.props.user} logout={this.props.logout} />                
                     <Container
                         user={this.props.user}
                         message={this.props.message}
@@ -30,7 +29,6 @@ class Main extends Component{
                         register={this.props.register}
                         update={this.props.update}
                         delete={this.props.delete} />
-                </Switch>
             </div>
             )
     }

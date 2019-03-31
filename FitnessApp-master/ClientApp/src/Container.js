@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 //Views
 import Home from './Views/Home';
@@ -33,23 +33,26 @@ class Container extends React.Component {
         return (
             <div className="card" style={cardStyle}>
                 <div className="card-body">
-                    <Route exact path="/" component={Home} />
+                    <Switch>
+                        <Route exact path="/" component={Home} />
 
-                    <Route path="/register" render={(props) => <Register
-                        register={this.props.register}
-                        message={this.props.receiver === MessageReceivers.REGISTER ? this.props.message : ""} />} />
-                    <Route path="/login" render={(props) => <Login
-                        login={this.props.login}
-                        message={this.props.receiver === MessageReceivers.LOGIN ? this.props.message : ""} />} />
+                        <Route path="/register" render={(props) => <Register
+                            register={this.props.register}
+                            message={this.props.receiver === MessageReceivers.REGISTER ? this.props.message : ""} />} />
+                        <Route path="/login" render={(props) => <Login
+                            login={this.props.login}
+                            message={this.props.receiver === MessageReceivers.LOGIN ? this.props.message : ""}
+                            user={this.props.user}/>} />
 
-                    <PrivateRoute path="/Workouts" user={this.props.user} component={Workouts} />
-                    <PrivateRoute path="/Food" user={this.props.user} component={Food} />
-                    <PrivateRoute path="/Account"
-                        user={this.props.user}
-                        update={this.props.update}
-                        delete={this.props.delete}
-                        message={this.props.receiver === MessageReceivers.UPDATE ? this.props.message : ""}
-                        component={Account} />
+                        <PrivateRoute path="/Workouts" user={this.props.user} component={Workouts} />
+                        <PrivateRoute path="/Food" user={this.props.user} component={Food} />
+                        <PrivateRoute path="/Account"
+                            user={this.props.user}
+                            update={this.props.update}
+                            delete={this.props.delete}
+                            message={this.props.receiver === MessageReceivers.UPDATE ? this.props.message : ""}
+                                component={Account} />
+                    </Switch>
                 </div>
             </div>
         )
