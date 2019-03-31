@@ -1,11 +1,7 @@
-using fitnessData.Auth;
-using fitnessData.DataModels;
 using fitnessapp.Services;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using fitnessData.Auth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
@@ -25,9 +21,6 @@ namespace fitnessapp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DataConnection")));
-
             services.AddDbContext<AuthDbContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("AuthConnection")));
 

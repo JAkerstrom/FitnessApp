@@ -63,10 +63,10 @@ export default class UserService {
             });
     }
 
-    static logout(userid, receiveresponse) {
+    static logout(user, receiveresponse) {
 
         axios.post('auth/logout', {
-            "UserId": userid,
+            "User": user,
             "ReturnUrl": "",
             "Token": ""
         })

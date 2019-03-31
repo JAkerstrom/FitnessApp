@@ -29,23 +29,15 @@ namespace fitnessapp.Services
             return UserDTO.Create(user);
         }
 
-        public UserDTO Get(string email)
-        {
-            var user = _userContext.Users.FirstOrDefault(u => u.Email == email);
-
-            return UserDTO.Create(user);
-        }
-
         public ResponseVM CreateNew(RegisterRequest request)
         {
-            //Add confirm email
 
             if (_userContext.Users.Any(u => u.Email == request.Email))
             {
                 return ResponseVM.Create("",false,"Email is allready registered", REGISTER, "");
             }
 
-            var passwordhash = CryptoUtils.GetMD5Hash(request.Password); //////fixa bättre kryptering
+            var passwordhash = CryptoUtils.GetMD5Hash(request.Password);
 
             var newUser = new ApplicationUser()
             {

@@ -25,7 +25,7 @@ namespace fitnessapp.Controllers
 
 
         [HttpPost]
-        public ResponseVM Logout([FromBody]LogoutRequest logout)
+        public ResponseVM Logout([FromBody]RequestVM logout)
         {
             if (!ModelState.IsValid)
             {

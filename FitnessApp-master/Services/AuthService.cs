@@ -44,10 +44,9 @@ namespace fitnessapp.Services
 
         }
 
-        public ResponseVM Logout(LogoutRequest logout)
+        public ResponseVM Logout(RequestVM request)
         {
-            //token, returnurl, userid
-            ApplicationUser user = _userContext.Users.Find(logout.UserId);
+            ApplicationUser user = _userContext.Users.Find(request.User.Id);
 
             if (user == null) {
                 return ResponseVM.Create("", false, "no such user", DEFAULT, "");
@@ -58,7 +57,6 @@ namespace fitnessapp.Services
             _userContext.SaveChanges();
 
             return ResponseVM.Create("", true, "user logged out", DEFAULT, "");
-
         }
 
         public bool IsLoggedIn(RequestVM request, UserDTO dto) {

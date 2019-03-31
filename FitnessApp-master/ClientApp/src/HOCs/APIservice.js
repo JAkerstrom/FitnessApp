@@ -67,7 +67,7 @@ const HOC = (WrappedComponent) => {
         }
 
         logout(user) {
-            UserService.logout(user.id, this.receiveResponse);
+            UserService.logout(user, this.receiveResponse);
         }
 
         register(email, password) {
