@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import LoginForm from '../ViewComponents/LoginForm';
+import { Redirect } from 'react-router-dom';
 
 
 export default class Login extends React.Component {
@@ -9,6 +10,16 @@ export default class Login extends React.Component {
     }
 
     render() {
+
+        if (this.props.user !== "") {
+            return (
+                <Redirect to={{
+                    pathname: "/"
+                }}
+                />
+            );
+        }
+
         return (
             <div className="row justify-content-center">
                 <LoginForm

@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import InputField from '../ViewComponents/InputField';
 import InputButton from '../ViewComponents/InputButton';
 import StyleEnums from '../Utils/StyleEnums';
@@ -58,16 +57,6 @@ export default class LoginForm extends React.Component {
 
         let formStyle = {
             paddingTop: "20px"
-        }
-
-
-        if (this.props.user !== "") {
-            return (
-                <Redirect to={{
-                    pathname: "/"
-                }}
-                />
-            );
         }
 
         return (

@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import EditAccount from '../ViewComponents/EditAccount';
+import { Redirect } from 'react-router-dom';
 
 const Types = {
     Password: 'password',
@@ -20,6 +21,16 @@ export default class Account extends React.Component {
     }
 
     render() {
+
+        if (this.props.user === "") {
+            return (
+                <Redirect to={{
+                    pathname: "/"
+                }}
+                />
+            );
+        }
+
         return <EditAccount
             user={this.state.user}
             update={this.props.update}
