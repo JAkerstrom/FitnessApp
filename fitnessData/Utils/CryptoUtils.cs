@@ -9,6 +9,7 @@ namespace fitnessData.Utils
         const string TOKENCHARS = "abcdefghijklmnopqrstuvxyz0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ";
         const int TOKENLENGTH = 32;
 
+        //Ta bort dateutils-saker
         private static DateTime BASETIME = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public static string GetMD5Hash(string password)
@@ -49,6 +50,8 @@ namespace fitnessData.Utils
             return sb.ToString() + userId.ToString();  //To-Do , göm userId bättre
         }
 
+
+        //ta bort
         public static long TimeStamp
         {
             get

@@ -35,11 +35,9 @@ class Container extends React.Component {
                         <Route exact path="/" component={Home} />
                         <Route path="/Workouts" render={() => <Workouts user={this.props.user} />} />
                         <Route path="/Food" render={() => <Food user={this.props.user} />} />
-                        <Route path="/Account" render={() => <Account
-                            user={this.props.user}
-                            update={this.props.update}
-                            delete={this.props.delete}
-                            message={this.props.receiver === MessageReceivers.UPDATE ? this.props.message : ""} />} />
+                        <Route path="/Account" render={() =>
+                            <Account user={this.props.user} />
+                        }/>
                     </div>
                 </div>
             )

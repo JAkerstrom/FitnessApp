@@ -3,6 +3,7 @@ import InputField from '../ViewComponents/InputField';
 import InputButton from '../ViewComponents/InputButton';
 import StyleEnums from '../Utils/StyleEnums';
 import InputTypes from '../Utils/InputTypes';
+import UserService from '../Services/UserService';
 
 export default class EditAccount extends React.Component {
 
@@ -12,6 +13,7 @@ export default class EditAccount extends React.Component {
         this.state = {
             user: this.props.user,
             copy: this.props.user.copyMe(),
+            message: "",
             validEmailInput: true,
             validUsernameInput: true
         }
@@ -20,6 +22,7 @@ export default class EditAccount extends React.Component {
         this.updateUsername = this.updateUsername.bind(this);
         this.doSave = this.doSave.bind(this);
         this.doDelete = this.doDelete.bind(this);
+        this.callback = this.callback.bind(this);
     }
 
     updateEmail(e, valid) {
@@ -53,12 +56,18 @@ export default class EditAccount extends React.Component {
 
     doSave(e) {
         e.preventDefault();
-        this.props.update(this.state.copy);
+        UserService.update(this.state.copy, this.callback);
+    }
+
+    callback(success) {
+        this.setState({
+            message: success ? "Dina uppgifter är uppdaterade" : "Ett fel uppstod"
+        });
     }
 
     doDelete(e) {
         e.preventDefault();
-        this.props.delete(this.state.user);
+        UserService.delete(this.state.copy);
     }
 
     isValid() {

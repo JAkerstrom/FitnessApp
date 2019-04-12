@@ -62,9 +62,9 @@ const HOC = (WrappedComponent) => {
             });
         }
 
-        login(email, password) {
-            UserService.login(email, password, this.receiveResponse);
-        }
+        //login(email, password) {
+        //    UserService.login(email, password, this.receiveResponse);
+        //}
 
         logout(user) {
             UserService.logout(user, this.receiveResponse);
@@ -74,8 +74,8 @@ const HOC = (WrappedComponent) => {
             UserService.register(email, password, this.receiveResponse);
         }
 
-        update(user) {
-            UserService.update(user, this.receiveResponse);
+        update(user, cb) {
+            UserService.update(user, this.receiveResponse, cb); //error callback
         }
 
         delete(user) {
@@ -89,8 +89,8 @@ const HOC = (WrappedComponent) => {
                 <WrappedComponent
                     {...this.props}
                     user={this.state.user}
-                    message={this.state.message}
-                    receiver={this.state.receiver}
+                    message={this.state.message} //
+                    receiver={this.state.receiver} //
                     login={this.login}
                     logout={this.logout}
                     register={this.register}

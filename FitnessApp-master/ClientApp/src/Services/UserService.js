@@ -63,27 +63,27 @@ export default class UserService {
             });
     }
 
-    static logout(user, receiveresponse) {
+    //static logout(user, receiveresponse) {
 
-        axios.post('auth/logout', {
-            "User": user,
-            "ReturnUrl": "",
-            "Token": ""
-        })
-            .then(function (res) {
-                let response = new ResponseVM(res.data.message,
-                                            res.data.receiver,
-                                            res.data.requestSuccess,
-                                            res.data.nextUrl,
-                                            res.data.returnUrl);
-                receiveresponse(response);
-            })
-            .catch(function (error) {
-                console.log("error occured: ", error);
-            });
-    }
+    //    axios.post('auth/logout', {
+    //        "User": user,
+    //        "ReturnUrl": "",
+    //        "Token": ""
+    //    })
+    //        .then(function (res) {
+    //            let response = new ResponseVM(res.data.message,
+    //                                        res.data.receiver,
+    //                                        res.data.requestSuccess,
+    //                                        res.data.nextUrl,
+    //                                        res.data.returnUrl);
+    //            receiveresponse(response);
+    //        })
+    //        .catch(function (error) {
+    //            console.log("error occured: ", error);
+    //        });
+    //}
 
-    static update(user, receiveresponse) {
+    static update(user, receiveresponse, cb) {
 
         axios.post('account/update', {
             "Id": user.id,
@@ -106,9 +106,11 @@ export default class UserService {
                                             res.data.nextUrl,
                                             res.data.returnUrl,
                                             newuser);
+                cb(true);
                 receiveresponse(response);
             })
             .catch(function (error) {
+                cb(false);
                 console.log("error occured: ", error);
             });
 
