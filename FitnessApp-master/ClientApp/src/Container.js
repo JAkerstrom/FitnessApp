@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { Route, HashRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 //Views
 import Home from './Views/Home';
@@ -9,6 +9,8 @@ import Register from './Views/Register';
 import Food from './Views/Food';
 import Account from './Views/Account';
 import Workouts from './Views/Workouts';
+
+import PrivateRoute from './ViewComponents/PrivateRoute';
 
 //utils
 import MessageReceivers from './Utils/MessageReceivers';
@@ -28,37 +30,42 @@ class Container extends React.Component {
             padding: "10px",
         }
 
-        if (hasUser) {
-            return (
-                <div className="card" style={cardStyle}>
-                    <div className="card-body">
+        return (
+            <div className="card" style={cardStyle}>
+                <div className="card-body">
+                    <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route path="/Workouts" render={() => <Workouts user={this.props.user} />} />
-                        <Route path="/Food" render={() => <Food user={this.props.user} />} />
-                        <Route path="/Account" render={() => <Account
+
+                        <Route
+                            path="/register"
+                            render={(props) => <Register
+                            user={this.props.user}
+                            register={this.props.register}
+                            message={this.props.receiver === MessageReceivers.REGISTER ? this.props.message : ""} />} />
+                        <Route path="/login"
+                            render={(props) => <Login
+                            login={this.props.login}
+                            message={this.props.receiver === MessageReceivers.LOGIN ? this.props.message : ""}
+                            user={this.props.user}/>} />
+                        <PrivateRoute
+                            path="/Workouts"
+                            user={this.props.user}
+                            component={Workouts} />
+                        <PrivateRoute
+                            path="/Food"
+                            user={this.props.user}
+                            component={Food} />
+                        <PrivateRoute
+                            path="/Account"
                             user={this.props.user}
                             update={this.props.update}
                             delete={this.props.delete}
-                            message={this.props.receiver === MessageReceivers.UPDATE ? this.props.message : ""} />} />
-                    </div>
+                            message={this.props.receiver === MessageReceivers.UPDATE ? this.props.message : ""}
+                                component={Account} />
+                    </Switch>
                 </div>
-            )
-        }
-        else {
-            return (
-                <div className="card" style={cardStyle}>
-                    <div className="card-body">
-                        <Route exact path="/" component={Home} />
-                        <Route path="/register" render={(props) => <Register
-                            register={this.props.register}
-                            message={this.props.receiver === MessageReceivers.REGISTER ? this.props.message : ""} />} />
-                        <Route path="/login" render={(props) => <Login
-                            login={this.props.login}
-                            message={this.props.receiver === MessageReceivers.LOGIN ? this.props.message : ""} />} />
-                    </div>
-                </div>
-            )
-        }
+            </div>
+        )
     }
 }
 
