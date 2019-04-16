@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Main from './Main';
 
 import './index.css';
+import configureStore from './Redux/configureStore';
+import { Provider } from 'react-redux';
 
+const store = configureStore();
 
 ReactDOM.render(
-    <Router>
-        <Main />
-    </Router>,
+    <Provider store={store}>
+        <Router>
+            <Main />
+        </Router>
+    </Provider>,
     document.getElementById("root"));
 
