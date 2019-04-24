@@ -27,23 +27,23 @@ class MainConnect extends Component{
 
     receiveResponse(res) {
 
-        this.props.changeUserState(res.user, res.message, res.receiver);
+        this.props.changeUserState(res.user);
     }
 
-    login(email, password) {
-        UserService.login(email, password, this.receiveResponse);
+    login(email, password, errorcallback) {
+        UserService.login(email, password, this.receiveResponse, errorcallback);
     }
 
     logout(user) {
         UserService.logout(user, this.receiveResponse);
     }
 
-    register(email, password) {
-        UserService.register(email, password, this.receiveResponse);
+    register(email, password, errorcallback) {
+        UserService.register(email, password, this.receiveResponse, errorcallback);
     }
 
-    update(user) {
-        UserService.update(user, this.receiveResponse);
+    update(user, callback) {
+        UserService.update(user, this.receiveResponse, callback);
     }
 
     delete(user) {
@@ -74,8 +74,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        changeUserState: function (user, message, receiver) {
-            dispatch(changeUserState(user, message, receiver))
+        changeUserState: function (user) {
+            dispatch(changeUserState(user))
 
         }
     }

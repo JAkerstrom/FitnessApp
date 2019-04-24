@@ -1,10 +1,11 @@
 ﻿import axios from 'axios';
 import ResponseVM from '../Models/Messages/ResponseVM';
 import User from '../Models/User';
+import constants from '../Utils/stringConstants';
 
 export default class UserService {
 
-    static login(email, password, receiveresponse) {
+    static login(email, password, receiveresponse, errorcallback) {
 
         axios.post('auth/login', {
             "Email": email,
@@ -17,23 +18,26 @@ export default class UserService {
 
                 if (res.data.requestSuccess) {
                     user = new User(res.data.user.id, res.data.user.userName,
-                                    res.data.user.email, res.data.user.token);
-                }
+                        res.data.user.email, res.data.user.token);
 
-                let response = new ResponseVM(res.data.message,
-                                            res.data.receiver,
-                                            res.data.requestSuccess, 
-                                            res.data.nextUrl,
-                                            res.data.returnUrl,
-                                            user);
-                receiveresponse(response);
+                    let response = new ResponseVM(res.data.message,
+                        res.data.receiver,
+                        res.data.requestSuccess,
+                        res.data.nextUrl,
+                        res.data.returnUrl,
+                        user);
+                    receiveresponse(response);
+                }
+                else {
+                    errorcallback();
+                }
             })
             .catch(function (error) {
                 console.log("error occured: ", error);
             });
     }
 
-    static register(email, password, receiveresponse) {
+    static register(email, password, receiveresponse, errorcallback) {
 
         axios.post('auth/register', {
             "Email": email,
@@ -48,15 +52,18 @@ export default class UserService {
                 if (res.data.requestSuccess) {
                     newuser = new User( res.data.user.id, res.data.user.userName,
                                         res.data.user.email, res.data.user.token);
-                }
 
-                let response = new ResponseVM(res.data.message,
-                                            res.data.receiver,
-                                            res.data.requestSuccess,
-                                            res.data.nextUrl,
-                                            res.data.returnUrl,
-                                            newuser);
-                receiveresponse(response);
+                    let response = new ResponseVM(res.data.message,
+                                                res.data.receiver,
+                                                res.data.requestSuccess,
+                                                res.data.nextUrl,
+                                                res.data.returnUrl,
+                                                newuser);
+                    receiveresponse(response);
+                }
+                else {
+                    errorcallback();
+                }
             })
             .catch(function (error) {
                 console.log("error occured: ", error);
@@ -83,7 +90,7 @@ export default class UserService {
             });
     }
 
-    static update(user, receiveresponse) {
+    static update(user, receiveresponse, callback) {
 
         axios.post('account/update', {
             "Id": user.id,
@@ -95,18 +102,22 @@ export default class UserService {
                 let newuser = ""
 
                 if (res.data.requestSuccess) {
-                    newuser = new User( res.data.user.id, res.data.user.userName,
-                                        res.data.user.email, res.data.user.token);
+                    newuser = new User(res.data.user.id, res.data.user.userName,
+                        res.data.user.email, res.data.user.token);
+
+
+                    var response = new ResponseVM(res.data.message,
+                        res.data.receiver,
+                        res.data.requestSuccess,
+                        res.data.nextUrl,
+                        res.data.returnUrl,
+                        newuser);
+
+                    callback(constants.success);
+                    receiveresponse(response);
+                } else {
+                    callback(constants.failed)
                 }
-
-
-                var response = new ResponseVM(res.data.message,
-                                            res.data.receiver,
-                                            res.data.requestSuccess,
-                                            res.data.nextUrl,
-                                            res.data.returnUrl,
-                                            newuser);
-                receiveresponse(response);
             })
             .catch(function (error) {
                 console.log("error occured: ", error);

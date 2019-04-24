@@ -1,6 +1,6 @@
-﻿export default function UserReducer(state = initialState, action){
+﻿export default function LoginReducer(state = initialState, action) {
     switch (action.type) {
-        case "CHANGE_USERSTATE":
+        case "LOGIN_REQUEST":
             return Object.assign({}, state, {
                 user: action.user
             });

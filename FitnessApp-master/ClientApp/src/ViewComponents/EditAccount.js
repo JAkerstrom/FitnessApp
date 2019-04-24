@@ -3,6 +3,7 @@ import InputField from '../ViewComponents/InputField';
 import InputButton from '../ViewComponents/InputButton';
 import StyleEnums from '../Utils/StyleEnums';
 import InputTypes from '../Utils/InputTypes';
+import StringConstants from "../Utils/stringConstants";
 
 export default class EditAccount extends React.Component {
 
@@ -13,11 +14,13 @@ export default class EditAccount extends React.Component {
             user: this.props.user,
             copy: this.props.user.copyMe(),
             validEmailInput: true,
-            validUsernameInput: true
+            validUsernameInput: true,
+            statusmessage: ""
         }
 
         this.updateEmail = this.updateEmail.bind(this);
         this.updateUsername = this.updateUsername.bind(this);
+        this.callback = this.callback.bind(this);
         this.doSave = this.doSave.bind(this);
         this.doDelete = this.doDelete.bind(this);
     }
@@ -44,16 +47,31 @@ export default class EditAccount extends React.Component {
         });
     }
 
+    callback(status) {
+        if (status === StringConstants.success) {
+            this.setState({
+                user: this.state.copy.copyMe(),
+                statusmessage: "Dina uppgifter är uppdaterade"
+            });
+        }
+        else
+        {
+            this.setState({
+                statusmessage: "Uppdateringen misslyckades"
+            });
+        }
+    }
+
     renderMessage() {
-        if (this.props.message !== "") {
+        if (this.state.statusmessage !== "") {
             return <div style={{ margin: "10px" }} className="alert alert-secondary" role="alert">
-                {this.props.message}</div>;
+                {this.state.statusmessage}</div>;
         } 
     }
 
     doSave(e) {
         e.preventDefault();
-        this.props.update(this.state.copy);
+        this.props.update(this.state.copy, this.callback);
     }
 
     doDelete(e) {

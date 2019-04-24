@@ -13,11 +13,13 @@ export default class LoginForm extends React.Component {
             email: "",
             password: "",
             validemail: false,
-            validpassword: false
+            validpassword: false,
+            errormessage: ""
         }
 
         this.addEmail = this.addEmail.bind(this);
         this.addPassword = this.addPassword.bind(this);
+        this.errorCallback = this.errorCallback.bind(this);
         this.isValid = this.isValid.bind(this);
         this.submit = this.submit.bind(this);
     }
@@ -36,9 +38,15 @@ export default class LoginForm extends React.Component {
         });
     }
 
+    errorCallback() {
+        this.setState({
+            errormessage: "du har angett felaktiga uppgifter"
+        });
+    }
+
     submit(e) {
         e.preventDefault();
-        this.props.handleSubmit(this.state.email, this.state.password);
+        this.props.handleSubmit(this.state.email, this.state.password, this.errorCallback);
     }
 
 
@@ -47,9 +55,9 @@ export default class LoginForm extends React.Component {
     }
 
     renderMessage() {
-        if (this.props.message !== "") {
+        if (this.state.errormessage !== "") {
             return <div style={{ margin: "10px" }} className="alert alert-secondary" role="alert">
-                {this.props.message}</div>;
+                {this.state.errormessage}</div>;
         }
     }
 
