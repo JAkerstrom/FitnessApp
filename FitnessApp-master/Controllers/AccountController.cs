@@ -29,7 +29,7 @@ namespace fitnessapp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return ResponseVM.Create("", false, "invalid model", UPDATE, "", user);
+                return new ResponseVM(false, user);
             }
             return _userService.Update(user);
         }

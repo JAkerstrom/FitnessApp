@@ -29,7 +29,7 @@ namespace fitnessapp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return ResponseVM.Create("", false, "invalid model", DEFAULT, ""); 
+                return new ResponseVM(false); 
             }
 
             return _authService.Logout(logout);
@@ -40,7 +40,7 @@ namespace fitnessapp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return ResponseVM.Create("", false, "Please enter a valid email and password", LOGIN, "");
+                return new ResponseVM(false);
             }
 
             return _authService.ValidateLogin(login);
@@ -51,7 +51,7 @@ namespace fitnessapp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return ResponseVM.Create("", false, "invalid model", REGISTER, "");
+                return new ResponseVM(false);
             }
             return _userService.CreateNew(request);
         }

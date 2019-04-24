@@ -12,8 +12,6 @@ import Workouts from './Views/Workouts';
 
 import PrivateRoute from './ViewComponents/PrivateRoute';
 
-//utils
-import MessageReceivers from './Utils/MessageReceivers';
 
 class Container extends React.Component {
 
@@ -40,12 +38,10 @@ class Container extends React.Component {
                             path="/register"
                             render={(props) => <Register
                             user={this.props.user}
-                            register={this.props.register}
-                            message={this.props.receiver === MessageReceivers.REGISTER ? this.props.message : ""} />} />
+                            register={this.props.register} />} />
                         <Route path="/login"
                             render={(props) => <Login
                             login={this.props.login}
-                            message={this.props.receiver === MessageReceivers.LOGIN ? this.props.message : ""}
                             user={this.props.user}/>} />
                         <PrivateRoute
                             path="/Workouts"
@@ -60,8 +56,7 @@ class Container extends React.Component {
                             user={this.props.user}
                             update={this.props.update}
                             delete={this.props.delete}
-                            message={this.props.receiver === MessageReceivers.UPDATE ? this.props.message : ""}
-                                component={Account} />
+                            component={Account} />
                     </Switch>
                 </div>
             </div>

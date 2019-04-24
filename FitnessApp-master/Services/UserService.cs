@@ -34,7 +34,7 @@ namespace fitnessapp.Services
 
             if (_userContext.Users.Any(u => u.Email == request.Email))
             {
-                return ResponseVM.Create("",false,"Email is allready registered", REGISTER, "");
+                return new ResponseVM(false);
             }
 
             var passwordhash = CryptoUtils.GetMD5Hash(request.Password);
@@ -50,11 +50,7 @@ namespace fitnessapp.Services
 
             user = CreateUserToken(user);
 
-            return ResponseVM.Create("", true, 
-                "You account was created successfully!",
-                DEFAULT,
-                "", 
-                UserDTO.Create(user));
+            return new ResponseVM(true, UserDTO.Create(user));
         }
 
         public ResponseVM Delete(int id)
@@ -63,12 +59,12 @@ namespace fitnessapp.Services
 
             if (user == null)
             {
-                return ResponseVM.Create("",false, "error, no such user", DEFAULT, "");
+                return new ResponseVM(false);
             }
             _userContext.Users.Remove(user);
             _userContext.SaveChanges();
 
-            return ResponseVM.Create("", true, "The account was deleted", UPDATE, "");
+            return new ResponseVM(true);
         }
 
         public ResponseVM Update(UserDTO user)
@@ -78,7 +74,7 @@ namespace fitnessapp.Services
             updatedUser.UserName = user.UserName;
             _userContext.Users.Update(updatedUser);
             var res = _userContext.SaveChanges();
-            return ResponseVM.Create("", true, "your info was updated", UPDATE, "", UserDTO.Create(updatedUser));
+            return new ResponseVM(true, UserDTO.Create(updatedUser));
         }
 
         public ApplicationUser CreateUserToken(ApplicationUser user)

@@ -10,11 +10,6 @@ namespace fitnessapp.Services
 {
     public class AuthService
     {
-        private static int LOGIN = 1;
-        private static int REGISTER = 2;
-        private static int UPDATE = 3;
-        private static int DEFAULT = 4;
-
         private AuthDbContext _userContext;
 
         public AuthService(AuthDbContext userContext)
@@ -26,21 +21,21 @@ namespace fitnessapp.Services
 
             if (!EmailExists(login.Email))
             {
-                return ResponseVM.Create(login.ReturnUrl, false, "Invalid signin credentials", LOGIN, ""); 
+                return new ResponseVM(false); 
             }
 
             var user = _userContext.Users.FirstOrDefault(u => u.Email == login.Email);
 
             if (!CryptoUtils.VerifyPassword(login.Password, user.PasswordHash))
             {
-                return ResponseVM.Create(login.ReturnUrl, false ,"Invalid signin credentials", LOGIN, "");
+                return new ResponseVM(false);
             }
 
             user = CreateToken(user);
 
             var userdto = UserDTO.Create(user);
 
-            return ResponseVM.Create("", true, "", DEFAULT, "", userdto);
+            return new ResponseVM(true, userdto);
 
         }
 
@@ -49,14 +44,14 @@ namespace fitnessapp.Services
             ApplicationUser user = _userContext.Users.Find(request.User.Id);
 
             if (user == null) {
-                return ResponseVM.Create("", false, "no such user", DEFAULT, "");
+                return new ResponseVM(false);
             }
 
             user.Token = "";
             user.TimeToLive = 0; 
             _userContext.SaveChanges();
 
-            return ResponseVM.Create("", true, "user logged out", DEFAULT, "");
+            return new ResponseVM(true);
         }
 
         public bool IsLoggedIn(RequestVM request, UserDTO dto) {

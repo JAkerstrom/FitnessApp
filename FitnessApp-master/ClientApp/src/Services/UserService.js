@@ -20,12 +20,10 @@ export default class UserService {
                     user = new User(res.data.user.id, res.data.user.userName,
                         res.data.user.email, res.data.user.token);
 
-                    let response = new ResponseVM(res.data.message,
-                        res.data.receiver,
+                    let response = new ResponseVM(
                         res.data.requestSuccess,
-                        res.data.nextUrl,
-                        res.data.returnUrl,
-                        user);
+                        user
+                    );
                     receiveresponse(response);
                 }
                 else {
@@ -53,12 +51,10 @@ export default class UserService {
                     newuser = new User( res.data.user.id, res.data.user.userName,
                                         res.data.user.email, res.data.user.token);
 
-                    let response = new ResponseVM(res.data.message,
-                                                res.data.receiver,
-                                                res.data.requestSuccess,
-                                                res.data.nextUrl,
-                                                res.data.returnUrl,
-                                                newuser);
+                    let response = new ResponseVM(
+                        res.data.requestSuccess,
+                        newuser
+                    );
                     receiveresponse(response);
                 }
                 else {
@@ -78,11 +74,8 @@ export default class UserService {
             "Token": ""
         })
             .then(function (res) {
-                let response = new ResponseVM(res.data.message,
-                                            res.data.receiver,
-                                            res.data.requestSuccess,
-                                            res.data.nextUrl,
-                                            res.data.returnUrl);
+                let response = new ResponseVM(res.data.requestSuccess);
+
                 receiveresponse(response);
             })
             .catch(function (error) {
@@ -106,12 +99,10 @@ export default class UserService {
                         res.data.user.email, res.data.user.token);
 
 
-                    var response = new ResponseVM(res.data.message,
-                        res.data.receiver,
+                    var response = new ResponseVM(
                         res.data.requestSuccess,
-                        res.data.nextUrl,
-                        res.data.returnUrl,
-                        newuser);
+                        newuser
+                    );
 
                     callback(constants.success);
                     receiveresponse(response);
@@ -131,11 +122,7 @@ export default class UserService {
             .then(function (res) {
 
 
-                var response = new ResponseVM(res.data.message, 
-                                            res.data.receiver,
-                                            res.data.requestSuccess,
-                                            res.data.nextUrl,
-                                            res.data.returnUrl);
+                var response = new ResponseVM(res.data.requestSuccess);
         
                 receiveresponse(response);
             })
