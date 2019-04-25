@@ -36,7 +36,6 @@ namespace fitnessapp.Services
             var userdto = UserDTO.Create(user);
 
             return new ResponseVM(true, userdto);
-
         }
 
         public ResponseVM Logout(RequestVM request)

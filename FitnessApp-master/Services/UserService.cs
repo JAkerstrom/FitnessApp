@@ -10,11 +10,6 @@ namespace fitnessapp.Services
 {
     public class UserService
     {
-        private static int LOGIN = 1;
-        private static int REGISTER = 2;
-        private static int UPDATE = 3;
-        private static int DEFAULT = 4;
-
         private AuthDbContext _userContext;
 
         public UserService(AuthDbContext userContext)

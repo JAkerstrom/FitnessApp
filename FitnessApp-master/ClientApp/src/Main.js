@@ -26,7 +26,6 @@ class MainConnect extends Component{
     }
 
     receiveResponse(res) {
-
         this.props.changeUserState(res.user);
     }
 
