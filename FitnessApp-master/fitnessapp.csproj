@@ -26,10 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\public\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\fitnessData\fitnessData.csproj" />
   </ItemGroup>
 
