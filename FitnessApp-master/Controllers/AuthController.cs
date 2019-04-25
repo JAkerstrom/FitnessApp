@@ -9,11 +9,6 @@ namespace fitnessapp.Controllers
     [Route("[controller]/[action]")]
     public class AuthController : Controller
     {
-        private static int LOGIN = 1;
-        private static int REGISTER = 2;
-        private static int UPDATE = 3;
-        private static int DEFAULT = 4;
-
         private UserService _userService;
         private AuthService _authService;
 
@@ -29,7 +24,7 @@ namespace fitnessapp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return ResponseVM.Create("", false, "invalid model", DEFAULT, ""); 
+                return new ResponseVM(false); 
             }
 
             return _authService.Logout(logout);
@@ -40,7 +35,7 @@ namespace fitnessapp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return ResponseVM.Create("", false, "Please enter a valid email and password", LOGIN, "");
+                return new ResponseVM(false);
             }
 
             return _authService.ValidateLogin(login);
@@ -51,7 +46,7 @@ namespace fitnessapp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return ResponseVM.Create("", false, "invalid model", REGISTER, "");
+                return new ResponseVM(false);
             }
             return _userService.CreateNew(request);
         }

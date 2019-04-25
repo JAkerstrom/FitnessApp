@@ -10,11 +10,6 @@ namespace fitnessapp.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
-        private static int LOGIN = 1;
-        private static int REGISTER = 2;
-        private static int UPDATE = 3;
-        private static int DEFAULT = 4;
-
         private UserService _userService;
         private AuthService _authService;
 
@@ -29,7 +24,7 @@ namespace fitnessapp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return ResponseVM.Create("", false, "invalid model", UPDATE, "", user);
+                return new ResponseVM(false, user);
             }
             return _userService.Update(user);
         }

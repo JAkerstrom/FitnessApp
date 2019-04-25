@@ -4,6 +4,7 @@ import InputButton from '../ViewComponents/InputButton';
 import StyleEnums from '../Utils/StyleEnums';
 import InputTypes from '../Utils/InputTypes';
 
+
 //This class is almost identical to LoginForm.js, but it will contain different logic later on so
 //they should probably stay as two separate classes.
 export default class RegisterForm extends React.Component {
@@ -15,11 +16,13 @@ export default class RegisterForm extends React.Component {
             email: "",
             password: "",
             validemail: false,
-            validpassword: false
+            validpassword: false,
+            errormessage: ""
         }
 
         this.addEmail = this.addEmail.bind(this);
         this.addPassword = this.addPassword.bind(this);
+        this.errorCallback = this.errorCallback.bind(this);
         this.isValid = this.isValid.bind(this);
         this.submit = this.submit.bind(this);
     }
@@ -38,9 +41,15 @@ export default class RegisterForm extends React.Component {
         });
     }
 
+    errorCallback() {
+        this.setState({
+            errormessage: "du har angett felaktiga uppgifter"
+        });
+    }
+
     submit(e) {
         e.preventDefault();
-        this.props.handleSubmit(this.state.email, this.state.password);
+        this.props.handleSubmit(this.state.email, this.state.password, this.errorCallback);
     }
 
     isValid() {
@@ -49,9 +58,9 @@ export default class RegisterForm extends React.Component {
 
 
     renderMessage() {
-        if (this.props.message !== "") {
+        if (this.state.errormessage !== "") {
             return <div style={{ margin: "10px" }} className="alert alert-secondary" role="alert">
-                {this.props.message}</div>;
+                {this.state.errormessage}</div>;
         }
     }
 
