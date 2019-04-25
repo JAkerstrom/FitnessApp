@@ -22,10 +22,18 @@ class Container extends React.Component {
     render() {
         const hasUser = (this.props.user !== "");
 
+        //let cardStyle = {
+        //    backgroundColor: "#e9ecef",
+        //    borderRadius: ".50rem",
+        //    padding: "10px",
+        //}
+
         let cardStyle = {
-            backgroundColor: "#e9ecef",
-            borderRadius: ".50rem",
+            backgroundImage: "url(\"/Images/equipment2.jpg\")",
+            backgroundSize: "cover",
+            borderRadius: 0,
             padding: "10px",
+            height: "100vh"
         }
 
         return (

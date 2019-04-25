@@ -9,6 +9,7 @@ import UserService from '././Services/UserService';
 import Navbar from './ViewComponents/Navbar';
 import Container from './Container';
 import Jumbotron from './ViewComponents/Jumbotron';
+import Footer from './ViewComponents/Footer';
 
 //import PropTypes from 'prop-types';
 
@@ -50,18 +51,25 @@ class MainConnect extends Component{
     }
    
     render() {
+
+        let containerStyle = {
+            paddingRight: 0,
+            paddingLeft: 0
+        };
+
         return (
-            <div className="container-fluid">
+            <div className="container-fluid" style={containerStyle}>
                 {this.props.user === "" ? <Jumbotron /> : <div></div>}
                 <Navbar user={this.props.user} logout={this.logout} />                
-                    <Container
-                        user={this.props.user}
-                        message={this.props.message}
-                        receiver={this.props.receiver}
-                        login={this.login}
-                        register={this.register}
-                        update={this.update}
-                        delete={this.delete} />
+                <Container
+                    user={this.props.user}
+                    message={this.props.message}
+                    receiver={this.props.receiver}
+                    login={this.login}
+                    register={this.register}
+                    update={this.update}
+                    delete={this.delete} />
+                <Footer />
             </div>
             )
     }
