@@ -1,31 +1,44 @@
-﻿import React, { Component } from 'react';
+﻿import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, BrowserRouter as Router } from 'react-router-dom';
+import Jumbotron from '../ViewComponents/Jumbotron';
+import TeaserList from '../ViewComponents/TeaserList';
+import FormCard from '../ViewComponents/FormCard';
 
-class Home extends React.Component {
+class HomeConnect extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
 
     render() {
 
-        let cardStyle = {
-            backgroundColor: "#e9ecef",
-            borderRadius: ".50rem",
-            padding: "10px",
-        }
-
+        let img = "/Images/spencer-davis-1329216-unsplash.jpg";
+        let title = "Rubriken först";
         return (
-            <div>
-                <h2>Home</h2>
-                <p>Mauris sem velit, vehicula eget sodales vitae, rhoncus eget sapien:</p>
-                <ol>
-                    <li>Nulla pulvinar diam</li>
-                    <li>Facilisis bibendum</li>
-                    <li>Vestibulum vulputate</li>
-                </ol>
-            </div>
+            <>
+                {this.props.user === "" ? <Jumbotron /> : <div></div>}
+                {this.props.user === "" ? <TeaserList /> : <div></div>}
+                <FormCard img={img} title={title} theme={"black"}>                
+                    <p className="card-text p-3">
+                        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    </p>
+                    <p className="card-text p-3 italic">- Jonny Ponny</p>
+                </FormCard>
+            </>
         )
     }
 }
 
-export default Home;
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
 
+var Home = withRouter(connect(mapStateToProps)(HomeConnect));
+export default Home;
+   //<img src={image} className="card-img-top" />
 
 //class Home extends Component {
 

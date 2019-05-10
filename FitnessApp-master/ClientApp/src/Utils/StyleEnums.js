@@ -9,8 +9,8 @@ export default class StyleEnums {
 
 
     //Forms
-    static FORM_CARD_BODY = "col-xs-12 col-md-6 card";
-    static FORM = "form";
-    static FORM_GROUP = "form-group";
-    static FORM_CONTROL = "form-control";
+    //static FORM_CARD_BODY = "col-8 card";
+    //static FORM = "form";
+    //static FORM_GROUP = "form-group";
+    //static FORM_CONTROL = "form-control";
 }

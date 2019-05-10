@@ -1,7 +1,41 @@
 body {
     margin: 0;
     padding: 0;
+    background-image: url("/Images/equipment2.jpg");
+    background-size: cover;
+    background-attachment: fixed;
 }
+
+.btn {  
+
+    color: white;
+    font-weight:600;
+    font-family: Arial;
+}
+
+#navbarNav .navbar-nav .nav-item a {
+    color: #808080;
+}
+
+#navbarNav .navbar-nav .nav-item.blue a:hover, #navbarNav .navbar-nav .nav-item.blue a:focus, .blue {
+    color: #456792;
+}
+#navbarNav .navbar-nav .nav-item.green a:hover, #navbarNav .navbar-nav .nav-item.green a:focus, .green {
+    color: #338683;
+}
+
+#navbarNav .navbar-nav .nav-item.purple a:hover, #navbarNav .navbar-nav .nav-item.purple a:focus, .purple {
+    color: #a166d0;
+}
+
+#navbarNav .navbar-nav .nav-item.yellow a:hover, #navbarNav .navbar-nav .nav-item.yellow a:focus, .yellow {
+    color: #cda73c;
+}
+
+#navbarNav .navbar-nav .nav-item.red a:hover, #navbarNav .navbar-nav .nav-item.red a:focus, .red {
+    color: #e7683f;
+}
+
 
 h1, h2, p, ul, li {
     font-family: sans-serif;
@@ -17,7 +51,6 @@ ul.header li {
 }
 
 ul li a {
-    color: #FFF;
     font-weight: bold;
     text-decoration: none;
     padding: 20px;
@@ -37,5 +70,5 @@ ul li a {
 }
 
 .active {
-    background-color: #10a35a;
+    background-color: #111;
 }

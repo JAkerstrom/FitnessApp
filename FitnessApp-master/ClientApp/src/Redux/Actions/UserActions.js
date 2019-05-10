@@ -1,9 +1,7 @@
-﻿function changeUserState(user, message = "", receiver = 0) {
+﻿function changeUserState(user) {
     return {
         type: "CHANGE_USERSTATE",
-        user,
-        message,
-        receiver
+        user
     };
 }
 

@@ -1,4 +1,6 @@
 ﻿import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, BrowserRouter as Router } from 'react-router-dom';
 import EditAccount from '../ViewComponents/EditAccount';
 import { Redirect } from 'react-router-dom';
 
@@ -9,15 +11,10 @@ const Types = {
     Text: 'text'
 }
 
-export default class Account extends React.Component {
+class AccountConnect extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            user: this.props.user
-        }
-
     }
 
     render() {
@@ -32,9 +29,17 @@ export default class Account extends React.Component {
         }
 
         return <EditAccount
-            user={this.state.user}
             update={this.props.update}
             delete={this.props.delete}
             message={this.props.message}/>
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
+
+var Account = withRouter(connect(mapStateToProps)(AccountConnect));
+export default Account;

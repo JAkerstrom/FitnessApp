@@ -1,7 +1,6 @@
 ﻿import React, { Component } from 'react';
 import InputField from '../ViewComponents/InputField';
 import InputButton from '../ViewComponents/InputButton';
-import StyleEnums from '../Utils/StyleEnums';
 import InputTypes from '../Utils/InputTypes';
 
 export default class LoginForm extends React.Component {
@@ -64,13 +63,16 @@ export default class LoginForm extends React.Component {
     render() {
 
         let formStyle = {
-            paddingTop: "20px"
+            padding: "20px"
         }
 
+        let classnames = "btn btn-lg";
+        let theme = "#456792";
+
         return (
-            <div className={StyleEnums.FORM_CARD_BODY}>
-                <form className={StyleEnums.FORM} style={formStyle}>
-                    <div className={StyleEnums.FORM_GROUP}>
+            <div className="col-12 p-0">
+                <form className="form" style={formStyle}>
+                    <div className="form-group col-12 p-0">
                         <InputField
                             inputtype={InputTypes.Email}
                             callback={this.addEmail}
@@ -81,14 +83,12 @@ export default class LoginForm extends React.Component {
                             inputtype={InputTypes.Password}
                             callback={this.addPassword}
                             value={this.state.password}
-                            placeholder={"Password.."}
+                            placeholder={"Lösenord.."}
                             readonly={false} />
 
                         { this.renderMessage() }
-
-                        <InputButton theme={StyleEnums.THEME_SUCCESS} clickHandler={this.submit} disabled={!this.isValid()} value={"Login"} />
-
                     </div>
+                    <InputButton theme={theme} class={classnames} clickHandler={this.submit} disabled={!this.isValid()} value={"Logga in"} />
                 </form>
             </div>
             );

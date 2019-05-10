@@ -8,10 +8,7 @@ import UserService from '././Services/UserService';
 //ViewComponents
 import Navbar from './ViewComponents/Navbar';
 import Container from './Container';
-import Jumbotron from './ViewComponents/Jumbotron';
 import Footer from './ViewComponents/Footer';
-
-//import PropTypes from 'prop-types';
 
 class MainConnect extends Component{
 
@@ -52,15 +49,14 @@ class MainConnect extends Component{
    
     render() {
 
-        let containerStyle = {
+        let mainStyle = {
             paddingRight: 0,
             paddingLeft: 0
         };
 
         return (
-            <div className="container-fluid" style={containerStyle}>
-                {this.props.user === "" ? <Jumbotron /> : <div></div>}
-                <Navbar user={this.props.user} logout={this.logout} />                
+            <div className="container-fluid" style={mainStyle}>
+                <Navbar user={this.props.user} logout={this.logout} />
                 <Container
                     user={this.props.user}
                     message={this.props.message}
@@ -69,24 +65,24 @@ class MainConnect extends Component{
                     register={this.register}
                     update={this.update}
                     delete={this.delete} />
-                <Footer />
             </div>
             )
     }
 }
 
 function mapStateToProps(state) {
-    return { user: state.UserReducer.user };
+    console.log(state);
+    return {       
+        user: state.user
+    };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         changeUserState: function (user) {
             dispatch(changeUserState(user))
-
         }
     }
-
 }
 
 var Main = withRouter(connect(mapStateToProps, mapDispatchToProps)(MainConnect));

@@ -1,7 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter, BrowserRouter as Router } from 'react-router-dom';
 
-export default class Workouts extends React.Component {
+class WorkoutsConnect extends React.Component {
 
     constructor(props) {
         super(props);
@@ -24,3 +26,12 @@ export default class Workouts extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
+
+var Workouts = withRouter(connect(mapStateToProps)(WorkoutsConnect));
+export default Workouts;
