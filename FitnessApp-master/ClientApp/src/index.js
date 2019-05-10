@@ -11,7 +11,6 @@ import UserReducer from './Redux/Reducers/UserReducer';
 import StateLoader from './Services/StateLoader';
 
 
-//window.localStorage.clear();
 const stateLoader = new StateLoader();
 
 const store = createStore(UserReducer, stateLoader.loadState());

@@ -10,7 +10,7 @@ export default class StateLoader {
 
     saveState(state) {
         if (state.user == "") {
-            this.clearLocalStorage();
+            return this.clearLocalStorage();
         }
         window.localStorage.setItem('user', JSON.stringify(state.user));
     }
