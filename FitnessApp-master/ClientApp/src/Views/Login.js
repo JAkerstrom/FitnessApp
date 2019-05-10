@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import LoginForm from '../ViewComponents/LoginForm';
 import { Redirect } from 'react-router-dom';
+import FormCard from '../ViewComponents/FormCard';
 
 
 export default class Login extends React.Component {
@@ -20,12 +21,20 @@ export default class Login extends React.Component {
             );
         }
 
+        let theme = "#456792"; //.blue
+        let img = "/Images/active-blue-blurred-background-1842627.jpg";
+
         return (
-            <div className="row justify-content-center">
+            <FormCard img={img} title={"Välkommen tillbaka!"} theme={theme}>
                 <LoginForm
                     handleSubmit={this.props.login}
-                    message={this.props.message}/>
-            </div>
+                    message={this.props.message} />
+            </FormCard>
         );
     }
 }
+
+
+
+
+

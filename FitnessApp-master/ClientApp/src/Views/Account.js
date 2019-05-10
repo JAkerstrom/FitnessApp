@@ -17,7 +17,6 @@ export default class Account extends React.Component {
         this.state = {
             user: this.props.user
         }
-
     }
 
     render() {

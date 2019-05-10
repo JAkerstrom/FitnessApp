@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react';
 import InputField from '../ViewComponents/InputField';
 import InputButton from '../ViewComponents/InputButton';
-import StyleEnums from '../Utils/StyleEnums';
 import InputTypes from '../Utils/InputTypes';
 import StringConstants from "../Utils/stringConstants";
+import ViewContainer from "../ViewComponents/ViewContainer";
 
 export default class EditAccount extends React.Component {
 
@@ -87,42 +87,57 @@ export default class EditAccount extends React.Component {
     render() {
 
         let formStyle = {
-            paddingTop: "20px"
+            padding: "20px"
         }
 
-        return (
-            <div className="col-6 col-md-offset-3 card">
-                <form className="form" style={formStyle}>
-                    <div className="form-group">
-                        <InputField
-                            inputtype={InputTypes.Email}
-                            callback={this.updateEmail}
-                            value={this.state.copy.email}
-                            placeholder={"Email.."}
-                            readonly={false} />
-                        <InputField
-                            inputtype={InputTypes.Text}
-                            callback={this.updateUsername}
-                            value={this.state.copy.username}
-                            placeholder={"Username.."}
-                            readonly={false} />
+        let red = "#e7683f";
+        let grey = "#808080";
+        let className = "btn btn-lg";
 
+        return (
+            <ViewContainer>
+                <div className="row">
+                    <div className="col-6">
+                        <h3 className="text-center">Mina uppgifter</h3>
+                        <form className="form" style={formStyle}>
+                            <InputField
+                                inputtype={InputTypes.Email}
+                                callback={this.updateEmail}
+                                value={this.state.copy.email}
+                                placeholder={"Email.."}
+                                label={"Emailadress:"}
+                                readonly={false} />
+                            <InputField
+                                inputtype={InputTypes.Text}
+                                callback={this.updateUsername}
+                                value={this.state.copy.username}
+                                placeholder={"Användarnamn.."}
+                                label={"Användarnamn:"}
+                                readonly={false} />
+                        </form>
+                    </div>
+                    <div className="col-6">
+                    </div>
+                    <div className="col-12 p-3 justify-content-center">
                         {this.renderMessage()}
 
                         <InputButton
                             clickHandler={this.doSave}
                             disabled={!this.isValid()}
-                            theme={StyleEnums.THEME_SUCCESS}
-                            value={"Save"} />
+                            theme={grey}
+                            class={className}
+                            value={"Spara"} />
 
                         <InputButton
                             clickHandler={this.doDelete}
                             disabled={false}
-                            theme={StyleEnums.THEME_DANGER}
-                            value={"Delete Account"} />
+                            theme={red}
+                            class={className}
+                            value={"Radera konto"} />
                     </div>
-                </form>
-            </div>
-        )
+
+                </div>
+            </ViewContainer>
+        );
     }
 }

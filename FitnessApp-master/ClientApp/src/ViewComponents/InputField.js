@@ -74,10 +74,6 @@ export default class InputField extends React.Component {
 
     render() {
 
-        let inputStyle = {
-            marginTop: "10px"
-        }
-
         let type = 'text';
         if (this.props.inputtype === InputTypes.Password) {
             type = 'password'
@@ -93,17 +89,17 @@ export default class InputField extends React.Component {
         else {
             return (
 
-                <Fragment>
+                <div className="form-group">
+                    <label>{this.props.label == undefined ? "" : this.props.label}</label>
                     <input
-                        className={StyleEnums.FORM_CONTROL}
+                        className="form-control"
                         aria-describedby="helptext"
-                        style={inputStyle}
                         value={this.props.value}
                         type={type}
                         readOnly={this.props.readOnly}
                         onChange={(e) => { this.change(e) }}
                         placeholder={placeholder} />
-                </Fragment>
+                </div>
             );
         }
     }

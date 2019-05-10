@@ -8,12 +8,16 @@ export default class InputButton extends React.Component {
 
     render() {
         let inputStyle = {
-            marginTop: "10px"
+            margin: "10px",
+            backgroundColor: "white",
+            borderRadius: ".0rem",
+            color: this.props.theme,
+            borderColor: this.props.theme
         }
 
         return (
             <button
-                className={this.props.theme}
+                className={this.props.class}
                 style={inputStyle}
                 onClick={(e) => { this.props.clickHandler(e) }}
                 disabled={this.props.disabled}

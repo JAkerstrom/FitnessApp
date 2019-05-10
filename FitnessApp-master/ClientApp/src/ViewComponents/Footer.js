@@ -5,7 +5,7 @@ class Footer extends React.Component {
         let footerStyle = {
             bottom: 0,
             width: "100%",
-            backgroundColor: "#f5f5f5",
+            backgroundColor: "black",
         };
 
         return (

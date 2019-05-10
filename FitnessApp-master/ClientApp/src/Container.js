@@ -20,53 +20,47 @@ class Container extends React.Component {
     }
 
     render() {
-        const hasUser = (this.props.user !== "");
-
-        //let cardStyle = {
-        //    backgroundColor: "#e9ecef",
-        //    borderRadius: ".50rem",
-        //    padding: "10px",
-        //}
-
-        let cardStyle = {
-            backgroundImage: "url(\"/Images/equipment2.jpg\")",
-            backgroundSize: "cover",
+        let divStyle = {
             borderRadius: 0,
-            padding: "10px",
-            height: "100vh"
+            padding: "0px",
+            margin: "0px",
+            border: "none",
+            height: "100vh",
+            backgroundColor: "transparent"
         }
 
         return (
-            <div className="card" style={cardStyle}>
-                <div className="card-body">
-                    <Switch>
-                        <Route exact path="/" component={Home} />
+            <div style={divStyle}>
+                <Switch>
+                    <Route
+                        exact path="/"
+                        component={Home}
+                        user={this.props.user}/>
 
-                        <Route
-                            path="/register"
-                            render={(props) => <Register
-                            user={this.props.user}
-                            register={this.props.register} />} />
-                        <Route path="/login"
-                            render={(props) => <Login
-                            login={this.props.login}
-                            user={this.props.user}/>} />
-                        <PrivateRoute
-                            path="/Workouts"
-                            user={this.props.user}
-                            component={Workouts} />
-                        <PrivateRoute
-                            path="/Food"
-                            user={this.props.user}
-                            component={Food} />
-                        <PrivateRoute
-                            path="/Account"
-                            user={this.props.user}
-                            update={this.props.update}
-                            delete={this.props.delete}
-                            component={Account} />
-                    </Switch>
-                </div>
+                    <Route
+                        path="/register"
+                        render={(props) => <Register
+                        user={this.props.user}
+                        register={this.props.register} />} />
+                    <Route path="/login"
+                        render={(props) => <Login
+                        login={this.props.login}
+                        user={this.props.user}/>} />
+                    <PrivateRoute
+                        path="/Workouts"
+                        user={this.props.user}
+                        component={Workouts} />
+                    <PrivateRoute
+                        path="/Food"
+                        user={this.props.user}
+                        component={Food} />
+                    <PrivateRoute
+                        path="/Account"
+                        user={this.props.user}
+                        update={this.props.update}
+                        delete={this.props.delete}
+                        component={Account} />
+                </Switch>
             </div>
         )
     }
