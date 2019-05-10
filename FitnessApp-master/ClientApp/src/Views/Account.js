@@ -15,10 +15,6 @@ class AccountConnect extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            user: this.props.user
-        }
     }
 
     render() {
@@ -33,7 +29,6 @@ class AccountConnect extends React.Component {
         }
 
         return <EditAccount
-            user={this.state.user}
             update={this.props.update}
             delete={this.props.delete}
             message={this.props.message}/>
