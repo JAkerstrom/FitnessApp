@@ -32,7 +32,7 @@ class HomeConnect extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.UserReducer.user
+        user: state.user
     };
 }
 

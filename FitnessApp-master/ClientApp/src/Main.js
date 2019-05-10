@@ -71,9 +71,9 @@ class MainConnect extends Component{
 }
 
 function mapStateToProps(state) {
-    return {
-        
-        user: state.UserReducer.user
+    console.log(state);
+    return {       
+        user: state.user
     };
 }
 
@@ -81,10 +81,8 @@ function mapDispatchToProps(dispatch) {
     return {
         changeUserState: function (user) {
             dispatch(changeUserState(user))
-
         }
     }
-
 }
 
 var Main = withRouter(connect(mapStateToProps, mapDispatchToProps)(MainConnect));

@@ -5,7 +5,11 @@ import InputTypes from '../Utils/InputTypes';
 import StringConstants from "../Utils/stringConstants";
 import ViewContainer from "../ViewComponents/ViewContainer";
 
-export default class EditAccount extends React.Component {
+import { connect } from 'react-redux';
+import { withRouter, BrowserRouter as Router } from 'react-router-dom';
+
+
+class EditAccountConnect extends React.Component {
 
     constructor(props) {
         super(props);
@@ -141,3 +145,12 @@ export default class EditAccount extends React.Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
+
+var EditAccount = withRouter(connect(mapStateToProps)(EditAccountConnect));
+export default EditAccount;

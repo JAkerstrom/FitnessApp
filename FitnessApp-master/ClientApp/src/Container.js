@@ -1,5 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter, BrowserRouter as Router } from 'react-router-dom';
 
 //Views
 import Home from './Views/Home';
@@ -13,7 +15,7 @@ import Workouts from './Views/Workouts';
 import PrivateRoute from './ViewComponents/PrivateRoute';
 
 
-class Container extends React.Component {
+class ContainerConnect extends React.Component {
 
     constructor(props) {
         super(props);
@@ -34,8 +36,7 @@ class Container extends React.Component {
                 <Switch>
                     <Route
                         exact path="/"
-                        component={Home}
-                        user={this.props.user}/>
+                        component={Home} />
 
                     <Route
                         path="/register"
@@ -56,7 +57,6 @@ class Container extends React.Component {
                         component={Food} />
                     <PrivateRoute
                         path="/Account"
-                        user={this.props.user}
                         update={this.props.update}
                         delete={this.props.delete}
                         component={Account} />
@@ -66,4 +66,11 @@ class Container extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
+
+var Container = withRouter(connect(mapStateToProps)(ContainerConnect));
 export default Container;
