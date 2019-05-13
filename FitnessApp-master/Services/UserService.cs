@@ -34,11 +34,7 @@ namespace fitnessapp.Services
 
             var passwordhash = CryptoUtils.GetMD5Hash(request.Password);
 
-            var newUser = new ApplicationUser()
-            {
-                Email = request.Email,
-                PasswordHash = passwordhash
-            };
+            var newUser = new ApplicationUser(request.Email, passwordhash);
 
             var user = _userContext.Add(newUser).Entity;
             _userContext.SaveChanges();

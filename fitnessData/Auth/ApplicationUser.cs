@@ -14,18 +14,10 @@ namespace fitnessData.Auth
         public string Token { get; set; }
         public long TimeToLive { get; set; }
 
-        public static ApplicationUser Create(int id, string username, string email,
-                                            string password, string token, long timetolive)
+        public ApplicationUser(string email, string passwordHash)
         {
-            return new ApplicationUser()
-            {
-                Id = id,
-                UserName = username,
-                Email = email,
-                PasswordHash = CryptoUtils.GetMD5Hash(password),
-                Token = token,
-                TimeToLive = timetolive,
-            };
+            Email = email;
+            PasswordHash = passwordHash;
         }
 
         public bool TokenExpired()

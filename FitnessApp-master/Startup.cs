@@ -1,4 +1,5 @@
 using fitnessapp.Services;
+using fitnessData.AppData;
 using fitnessData.Auth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +22,9 @@ namespace fitnessapp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDataDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DataConnection")));
+
             services.AddDbContext<AuthDbContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("AuthConnection")));
 
