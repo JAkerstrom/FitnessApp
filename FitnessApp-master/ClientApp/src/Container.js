@@ -27,7 +27,8 @@ class ContainerConnect extends React.Component {
             padding: "0px",
             margin: "0px",
             border: "none",
-            height: "100vh",
+            height: "auto",
+            minHeight: "100vh",
             backgroundColor: "transparent"
         }
 

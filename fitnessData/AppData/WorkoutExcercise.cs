@@ -10,5 +10,16 @@ namespace fitnessData.AppData
         public Workout Workout { get; set; }
         public int ExcerciseId { get; set; }
         public Excercise Excercise { get; set; }
+
+        public WorkoutExcercise()
+        {
+
+        }
+
+        public WorkoutExcercise(Workout workout, Excercise excercise)
+        {
+            Workout = workout;
+            Excercise = excercise;
+        }
     }
 }

@@ -94,50 +94,57 @@ class EditAccountConnect extends React.Component {
             padding: "20px"
         }
 
+        let cardstyle = {
+            height: "100%"
+        }
+
         let red = "#e7683f";
         let grey = "#808080";
         let className = "btn btn-lg";
 
         return (
             <ViewContainer>
-                <div className="row">
-                    <div className="col-6">
-                        <h3 className="text-center">Mina uppgifter</h3>
-                        <form className="form" style={formStyle}>
-                            <InputField
-                                inputtype={InputTypes.Email}
-                                callback={this.updateEmail}
-                                value={this.state.copy.email}
-                                placeholder={"Email.."}
-                                label={"Emailadress:"}
-                                readonly={false} />
-                            <InputField
-                                inputtype={InputTypes.Text}
-                                callback={this.updateUsername}
-                                value={this.state.copy.username}
-                                placeholder={"Användarnamn.."}
-                                label={"Användarnamn:"}
-                                readonly={false} />
-                        </form>
-                    </div>
-                    <div className="col-6">
-                    </div>
-                    <div className="col-12 p-3 justify-content-center">
-                        {this.renderMessage()}
+                <div className="card" style={cardstyle}>
+                    <div className="row">
 
-                        <InputButton
-                            clickHandler={this.doSave}
-                            disabled={!this.isValid()}
-                            theme={grey}
-                            class={className}
-                            value={"Spara"} />
+                        <div className="col-6">
+                            <h3 className="text-center">Mina uppgifter</h3>
+                            <form className="form" style={formStyle}>
+                                <InputField
+                                    inputtype={InputTypes.Email}
+                                    callback={this.updateEmail}
+                                    value={this.state.copy.email}
+                                    placeholder={"Email.."}
+                                    label={"Emailadress:"}
+                                    readonly={false} />
+                                <InputField
+                                    inputtype={InputTypes.Text}
+                                    callback={this.updateUsername}
+                                    value={this.state.copy.username}
+                                    placeholder={"Användarnamn.."}
+                                    label={"Användarnamn:"}
+                                    readonly={false} />
+                            </form>
+                        </div>
+                        <div className="col-6">
+                        </div>
+                        <div className="col-12 p-3 justify-content-center">
+                            {this.renderMessage()}
 
-                        <InputButton
-                            clickHandler={this.doDelete}
-                            disabled={false}
-                            theme={red}
-                            class={className}
-                            value={"Radera konto"} />
+                            <InputButton
+                                clickHandler={this.doSave}
+                                disabled={!this.isValid()}
+                                theme={grey}
+                                class={className}
+                                value={"Spara"} />
+
+                            <InputButton
+                                clickHandler={this.doDelete}
+                                disabled={false}
+                                theme={red}
+                                class={className}
+                                value={"Radera konto"} />
+                        </div>
                     </div>
 
                 </div>

@@ -15,8 +15,7 @@ const stateLoader = new StateLoader();
 
 const store = createStore(UserReducer, stateLoader.loadState());
 store.subscribe(() => {
-    stateLoader.saveState(store.getState() /*! kolla vad savestate
-     * får för variabel!*/);
+    stateLoader.saveState(store.getState());
 });
 
 ReactDOM.render(

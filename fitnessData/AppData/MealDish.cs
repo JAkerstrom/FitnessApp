@@ -11,5 +11,16 @@ namespace fitnessData.AppData
 
         public int DishId { get; set; }
         public Dish Dish { get; set; }
+
+        public MealDish()
+        {
+
+        }
+
+        public MealDish(Meal meal, Dish dish)
+        {
+            Meal = meal;
+            Dish = dish;
+        }
     }
 }

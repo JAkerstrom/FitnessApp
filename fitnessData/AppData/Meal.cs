@@ -13,5 +13,16 @@ namespace fitnessData.AppData
         public DateTime DateTime { get; set; }
 
         public ICollection<MealDish> Dishes { get; set; }
+
+        public Meal()
+        {
+            Dishes = new List<MealDish>();
+        }
+
+        public Meal(int userid, DateTime date)
+        {
+            UserId = userid;
+            DateTime = date;
+        }
     }
 }

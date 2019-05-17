@@ -13,6 +13,18 @@ namespace fitnessData.AppData
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-        public ICollection<WorkoutExcercise> Excercises { get; set; }
+        public IList<WorkoutExcercise> Excercises { get; set; }
+
+        public Workout()
+        {
+            Excercises = new List<WorkoutExcercise>();
+        }
+
+        public Workout(int userid, DateTime start, DateTime end)
+        {
+            UserId = userid;
+            StartTime = start;
+            EndTime = end;
+        }
     }
 }

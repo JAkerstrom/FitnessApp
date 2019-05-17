@@ -6,6 +6,7 @@ class Footer extends React.Component {
             bottom: 0,
             width: "100%",
             backgroundColor: "black",
+            overflow: "hidden"
         };
 
         return (
