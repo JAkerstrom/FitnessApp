@@ -65,6 +65,7 @@ class MainConnect extends Component{
                     register={this.register}
                     update={this.update}
                     delete={this.delete} />
+                <Footer />
             </div>
             )
     }

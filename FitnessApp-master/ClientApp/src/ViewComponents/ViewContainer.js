@@ -14,7 +14,8 @@ export default class ViewContainer extends React.Component {
             clear: "both",
             padding: "0px",
             border: "none",
-            height: "85vh"
+            height: "85vh",
+            backgroundColor: "transparent"
         }
 
         return (

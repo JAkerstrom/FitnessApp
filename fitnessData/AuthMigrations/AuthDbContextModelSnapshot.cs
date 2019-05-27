@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using fitnessData.Auth;
 
-namespace fitnessData.AuthMigrations
+namespace fitnessData.authmigrations
 {
     [DbContext(typeof(AuthDbContext))]
     partial class AuthDbContextModelSnapshot : ModelSnapshot
@@ -42,11 +42,9 @@ namespace fitnessData.AuthMigrations
                         new
                         {
                             Id = 1,
-                            Email = "w@w.w",
-                            PasswordHash = "4EAE35F1B35977A00EBD8086C259D4C9",
-                            TimeToLive = 0L,
-                            Token = "",
-                            UserName = "Anna"
+                            Email = "user@test.com",
+                            PasswordHash = "098F6BCD4621D373CADE4E832627B4F6",
+                            TimeToLive = 0L
                         });
                 });
 #pragma warning restore 612, 618

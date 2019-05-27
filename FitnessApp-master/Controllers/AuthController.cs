@@ -50,6 +50,5 @@ namespace fitnessapp.Controllers
             }
             return _userService.CreateNew(request);
         }
-
     }
 }

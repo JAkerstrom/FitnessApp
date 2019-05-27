@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace fitnessData.AuthMigrations
+namespace fitnessData.authmigrations
 {
     public partial class initial : Migration
     {
@@ -27,7 +27,7 @@ namespace fitnessData.AuthMigrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "PasswordHash", "TimeToLive", "Token", "UserName" },
-                values: new object[] { 1, "Test@Email.com", "DC647EB65E6711E155375218212B3964", 0L, "", "johanna" });
+                values: new object[] { 1, "user@test.com", "098F6BCD4621D373CADE4E832627B4F6", 0L, null, null });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

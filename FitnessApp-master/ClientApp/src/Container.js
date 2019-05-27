@@ -1,18 +1,20 @@
 ﻿import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter, BrowserRouter as Router } from 'react-router-dom';
 
-//Views
+//Routing
+import { Route, Switch } from 'react-router-dom';
+import { withRouter, BrowserRouter as Router } from 'react-router-dom';
+import PrivateRoute from './ViewComponents/PrivateRoute';
+
+//Views -public
 import Home from './Views/Home';
 import Login from './Views/Login';
 import Register from './Views/Register';
-
+//Views -private
 import Food from './Views/Food';
 import Account from './Views/Account';
 import Workouts from './Views/Workouts';
 
-import PrivateRoute from './ViewComponents/PrivateRoute';
 
 
 class ContainerConnect extends React.Component {
@@ -27,7 +29,8 @@ class ContainerConnect extends React.Component {
             padding: "0px",
             margin: "0px",
             border: "none",
-            height: "100vh",
+            height: "auto",
+            minHeight: "100vh",
             backgroundColor: "transparent"
         }
 

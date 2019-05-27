@@ -28,5 +28,25 @@ namespace fitnessData.Utils
                 return secondsSinceEpoch;
             }
         }
+
+        public static string DateTimeFormatString(DateTime date)
+        {
+            return date.ToString("MM-dd HH:mm");
+        }
+
+        public static string DateFormatString(DateTime date)
+        {
+            return date.ToString("MM-dd");
+        }
+
+        public static string TimeFormatString(DateTime date)
+        {
+            return date.ToString("HH:mm");
+        }
+
+        public static string DateTimeDay(DateTime date)
+        {
+            return date.ToString("dddd");
+        }
     }
 }

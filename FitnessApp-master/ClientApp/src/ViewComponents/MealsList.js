@@ -1,26 +1,31 @@
 ﻿import React, { Component } from 'react';
 import DateService from '../Services/DateService';
 
-export default class WorkoutsList extends React.Component {
-
+export default class MealsList extends Component {
     constructor(props) {
         super(props);
 
-        this.toggleDone = this.toggleDone.bind(this);
         this.delete = this.delete.bind(this);
-    }
-
-    toggleDone(e) {
-        e.target.className = "fas fa-award";
     }
 
     delete(e) {
         let btn = e.target;
-        let workoutid = btn.closest('li').getAttribute("data-index");
-        this.props.delete(workoutid);
+        let mealid = btn.closest('li').getAttribute("data-index");
+        this.props.delete(mealid);
     }
 
-    renderWorkouts() {
+    renderDishes(item) {
+        if (item.dishes.length > 0) {
+
+            return (
+                item.dishes.map(dish => (
+                    <div key={dish.id} className="col">{dish.name}</div>
+                ))
+            );
+        }
+    }
+
+    renderMeals() {
         if (this.props.items.length > 0) {
             return (
                 this.props.items.map(item => (
@@ -30,20 +35,17 @@ export default class WorkoutsList extends React.Component {
                         className="list-group-item">
                         <div className="row">
                             <div className="col-3">
-                                <h4>{DateService.DayAsText(item.starttime)}, 
-                                    {DateService.DayAndMonth(item.starttime)}
+                                <h4>{DateService.DayAsText(item.datetime)},
+                                    {DateService.DayAndMonth(item.datetime)}
                                 </h4>
                             </div>
                             <div className="col-3">
-                                <p> {DateService.Time(item.starttime)} - {DateService.Time(item.endtime)}</p>
+                                <p>{DateService.Time(item.datetime)}</p>
                             </div>
                             <div className="col-3">
-                                {this.renderExercises(item)}
+                                {this.renderDishes(item)}
                             </div>
                             <div className="col-3">
-                                <button onClick={this.toggleDone} className="btn btn-sm">
-                                    <span className="fas fa-bullseye" />
-                                </button>
                                 <button onClick={this.delete} className="btn btn-sm float-right">x</button>
                             </div>
                         </div>
@@ -51,20 +53,7 @@ export default class WorkoutsList extends React.Component {
                 ))
             );
         }
-        return <li><h3 className="text-center">Inga sparade pass</h3></li>
-
-    }
-
-    renderExercises(item) {
-
-        if (item.exercises.length > 0) {
-
-            return (
-                item.exercises.map(exercise => (
-                    <div key={exercise.id} className="col">{exercise.name}</div>
-                ))
-            );
-        }
+        return <li><h3 className="text-center">Inga sparade Måltider</h3></li>
     }
 
     render() {
@@ -74,15 +63,14 @@ export default class WorkoutsList extends React.Component {
         }
 
         return (
-
             <div className="card" style={cardstyle}>
                 <div className="card-header text-center">
-                    <h2>Scheduled Workouts</h2>
+                    <h2>Måltider</h2>
                 </div>
                 <ul className="list-group">
-                    {this.renderWorkouts()}
+                    {this.renderMeals()}
                 </ul>
             </div>
-        );
+            );
     }
 }
