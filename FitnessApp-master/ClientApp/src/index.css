@@ -8,9 +8,10 @@ body {
 
 .btn {  
 
-    color: white;
+    color: #111;
     font-weight:600;
     font-family: Arial;
+    background-color: white;
 }
 
 #navbarNav .navbar-nav .nav-item a {

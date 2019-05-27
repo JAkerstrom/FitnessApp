@@ -1,6 +1,8 @@
 ﻿using fitnessapp.Models.Workouts;
 using fitnessapp.Services;
+using fitnessData.AppData;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace fitnessapp.Controllers
 {
@@ -15,16 +17,17 @@ namespace fitnessapp.Controllers
         }
 
         [HttpGet]
+        public IList<Excercise> Exercises(int id)
+        {
+            return _ws.Excercises(id);
+        }
+
+        [HttpGet]
         public Workouts_List List(int id)
         {
             return _ws.List(id);
         }
 
-        //[HttpPost]
-        //public void Add(int userid, WorkoutCreateVM workout)
-        //{
-        //    _ws.Add(userid, workout);
-        //}
         [HttpPost]
         public void Add([FromBody]WorkoutCreateVM workout)
         {

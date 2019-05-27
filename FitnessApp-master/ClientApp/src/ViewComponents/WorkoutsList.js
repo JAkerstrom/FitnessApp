@@ -10,9 +10,8 @@ export default class WorkoutsList extends React.Component {
         this.delete = this.delete.bind(this);
     }
 
-    toggleDone(event) {
-        event.target.firstChild.data = "Done!";
-        event.target.className = "btn btn-sm btn-success pull-right";
+    toggleDone(e) {
+        e.target.className = "fas fa-award";
     }
 
     delete(e) {
@@ -42,8 +41,10 @@ export default class WorkoutsList extends React.Component {
                                 {this.renderExercises(item)}
                             </div>
                             <div className="col-3">
-                                <button onClick={this.toggleDone} className="btn btn-sm">Done?</button>
-                                <button onClick={this.delete} className="btn btn-sm">x</button>
+                                <button onClick={this.toggleDone} className="btn btn-sm">
+                                    <span className="fas fa-bullseye" />
+                                </button>
+                                <button onClick={this.delete} className="btn btn-sm float-right">x</button>
                             </div>
                         </div>
                     </li>

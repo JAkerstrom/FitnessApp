@@ -1,6 +1,8 @@
 ﻿using fitnessapp.Models.Food;
 using fitnessapp.Services;
+using fitnessData.AppData;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace fitnessapp.Controllers
 {
@@ -15,6 +17,12 @@ namespace fitnessapp.Controllers
         }
 
         [HttpGet]
+        public IList<Dish> Dishes(int id)
+        {
+            return _ms.Dishes(id);
+        }
+
+        [HttpGet]
         public Meals_List List(int id)
         {
             return _ms.List(id);
@@ -23,6 +31,7 @@ namespace fitnessapp.Controllers
         [HttpPost]
         public void Add([FromBody]Meals_Create meal)
         {
+            //temporary bugfix
             meal.datetime = meal.datetime.AddHours(2);
             _ms.Add(meal);
         }

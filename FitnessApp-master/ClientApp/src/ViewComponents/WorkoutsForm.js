@@ -36,7 +36,6 @@ export default class WorkoutsForm extends React.Component {
     }
 
     formatDates() {
-        //let date = Date.parse(this.state.date);
         let date = this.state.date;
         return [
             DateService.SetTime(date, this.state.starttime),
@@ -67,11 +66,10 @@ export default class WorkoutsForm extends React.Component {
         }
     }
 
-
-
     render() {
         let cardstyle = {
-            height: "100%"
+            height: "100%",
+            padding: "20px"
         }
 
         return (

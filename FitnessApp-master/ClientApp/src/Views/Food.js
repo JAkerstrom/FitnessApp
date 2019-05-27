@@ -8,10 +8,6 @@ import ViewContainer from '../ViewComponents/ViewContainer';
 import MealsList from '../ViewComponents/MealsList';
 import MealsForm from '../ViewComponents/MealsForm';
 
-const dishes = [
-    { "id": "1", "name": "Pastasallad" },
-    { "id": "2", "name": "Fisksoppa" }];
-
 class FoodConnect extends React.Component {
 
     constructor(props) {
@@ -19,30 +15,38 @@ class FoodConnect extends React.Component {
 
         this.state = {
             meals: [],
-            dishes: dishes
+            dishes: []
         }
 
-        this.callback = this.callback.bind(this);
+        this.serviceCallback = this.serviceCallback.bind(this);
+        this.setDishes = this.setDishes.bind(this);
         this.delete = this.delete.bind(this);
         this.add = this.add.bind(this);
     }
 
-    callback(meals) {
+    serviceCallback(meals) {
         this.setState({
             meals: [...meals]
         });
     }
 
+    setDishes(dishes) {
+        this.setState({
+            dishes: [...dishes]
+        });
+    }
+
     componentWillMount() {
-        MealsService.List(this.props.user.id, this.callback);
+        MealsService.Dishes(this.props.user.id, this.setDishes);
+        MealsService.List(this.props.user.id, this.serviceCallback);
     }
 
     delete(id) {
-        MealsService.delete(id);
+        MealsService.delete(id, this.props.user.id, this.serviceCallback);
     }
 
     add(meal) {
-        MealsService.add(this.props.user.id, meal);
+        MealsService.add(this.props.user.id, meal, this.serviceCallback);
     }
 
     hasUser() {
@@ -77,7 +81,7 @@ class FoodConnect extends React.Component {
                 <div style={rowStyle} className="row">
                     <div style={divStyle} className="col-md-6 col-xs-12 pull-left">
                         <MealsForm
-                            selectlist={dishes}
+                            selectlist={this.state.dishes}
                             add={this.add}
                         />
                     </div>

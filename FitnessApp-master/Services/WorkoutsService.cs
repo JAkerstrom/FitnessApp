@@ -15,6 +15,13 @@ namespace fitnessapp.Services
             _context = context;
         }
 
+        public IList<Excercise> Excercises(int userid)
+        {
+            return _context.Excercises
+                .Where(d => d.UserId == userid || d.UserId == 0)
+                .ToList();
+        }
+
         public Workouts_List List(int userid)
         {
             Workouts_List model = new Workouts_List();

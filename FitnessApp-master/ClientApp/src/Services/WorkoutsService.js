@@ -5,6 +5,36 @@ import User from '../Models/User';
 
 export default class WorkoutsService {
 
+
+    static Exercises(id, callback) {
+
+        axios.get('workouts/exercises/', {
+            params: {
+                id: id
+            }
+        })
+            .then(function (res) {
+                if (res.data.length > 0) {
+
+                    let exList = [];
+
+                    for (let i = 0; i < res.data.length; i++) {
+                        exList.push(
+                            new Exercise(
+                                res.data[i].id,
+                                res.data[i].name,
+                                res.data[i].description)
+                        )
+                    };
+
+                    callback(exList);
+                }
+            })
+            .catch(function (error) {
+                console.log("error occured: ", error);
+            });
+    }
+
     static List(id, callback) {
 
         axios.get('workouts/list/', {
@@ -46,18 +76,19 @@ export default class WorkoutsService {
             });
     }
 
-    static delete(id) {
+    static delete(id, userid, callback) {
 
         axios.delete('workouts/delete/', { params: { id: id } })
             .then(function (res) {
-                var response = res;
+
+                WorkoutsService.List(userid, callback);
             })
             .catch(function (error) {
                 console.log("error occured: ", error);
             });
     }
 
-    static add(userid, workout) {
+    static add(userid, workout, callback) {
 
         axios.post('workouts/add/', 
             {
@@ -68,7 +99,7 @@ export default class WorkoutsService {
             }
         )
             .then(function (res) {
-                var response = res;
+                WorkoutsService.List(userid, callback);
             })
             .catch(function (error) {
                 console.log("error occured: ", error);

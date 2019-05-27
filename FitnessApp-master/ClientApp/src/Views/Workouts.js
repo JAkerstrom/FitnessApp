@@ -8,11 +8,11 @@ import ViewContainer from "../ViewComponents/ViewContainer";
 import WorkoutsList from '../ViewComponents/WorkoutsList';
 import WorkoutsForm from '../ViewComponents/WorkoutsForm';
 
-const exercises = [
-    {"id" : "1", "name" : "Knäböj" },
-    {"id" : "2", "name" : "Armhävningar" },
-    {"id" : "3", "name" : "Armhävningar" },
-    {"id" : "4", "name" : "Cykling" }];
+//const exercises = [
+//    {"id" : "1", "name" : "Knäböj" },
+//    {"id" : "2", "name" : "Armhävningar" },
+//    {"id" : "3", "name" : "Armhävningar" },
+//    {"id" : "4", "name" : "Cykling" }];
 
 class WorkoutsConnect extends React.Component {
 
@@ -21,30 +21,38 @@ class WorkoutsConnect extends React.Component {
 
         this.state = {
             workouts: [],
-            exercises: exercises
+            exercises: []
         }
 
-        this.callback = this.callback.bind(this);
+        this.serviceCallback = this.serviceCallback.bind(this);
+        this.setExerecises = this.setExerecises.bind(this);
         this.delete = this.delete.bind(this);
         this.add = this.add.bind(this);
     }
 
-    callback(workoutslist) {
+    serviceCallback(workoutslist) {
         this.setState({
             workouts: [...workoutslist]
         });
     }
 
+    setExerecises(exercises) {
+        this.setState({
+            exercises: [...exercises]
+        });
+    }
+
     componentWillMount() {
-        WorkoutsService.List(this.props.user.id, this.callback);
+        WorkoutsService.Exercises(this.props.user.id, this.setExerecises);
+        WorkoutsService.List(this.props.user.id, this.serviceCallback);
     }
 
     delete(id) {
-        WorkoutsService.delete(id);
+        WorkoutsService.delete(id, this.props.user.id, this.serviceCallback);
     }
 
     add(workout) {
-        WorkoutsService.add(this.props.user.id, workout);
+        WorkoutsService.add(this.props.user.id, workout, this.serviceCallback);
     }
 
     hasUser() {
@@ -80,7 +88,7 @@ class WorkoutsConnect extends React.Component {
                 <div style={rowStyle} className="row">
                     <div style={divStyle} className="col-md-6 col-xs-12 pull-left">
                         <WorkoutsForm
-                            selectlist={exercises}
+                            selectlist={this.state.exercises}
                             add={this.add}
                         />
                     </div>

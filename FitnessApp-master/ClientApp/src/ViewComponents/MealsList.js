@@ -40,13 +40,13 @@ export default class MealsList extends Component {
                                 </h4>
                             </div>
                             <div className="col-3">
-                                <p> {DateService.Time(item.datetime)}</p>
+                                <p>{DateService.Time(item.datetime)}</p>
                             </div>
                             <div className="col-3">
                                 {this.renderDishes(item)}
                             </div>
                             <div className="col-3">
-                                <button onClick={this.delete} className="btn btn-sm">x</button>
+                                <button onClick={this.delete} className="btn btn-sm float-right">x</button>
                             </div>
                         </div>
                     </li>
