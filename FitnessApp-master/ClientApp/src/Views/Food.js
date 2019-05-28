@@ -49,20 +49,7 @@ class FoodConnect extends React.Component {
         MealsService.add(this.props.user.id, meal, this.serviceCallback);
     }
 
-    hasUser() {
-        if (this.props.user === "") {
-            return (
-                <Redirect to={{
-                    pathname: "/"
-                }}
-                />
-            );
-        }
-    }
-
     render() {
-
-        this.hasUser()
 
         let rowStyle = {
             marginLeft: "0px",
@@ -75,6 +62,15 @@ class FoodConnect extends React.Component {
             padding: "20px",
             height: "auto"
         };
+
+        if (this.props.user === "") {
+            return (
+                <Redirect to={{
+                    pathname: "/"
+                }}
+                />
+            );
+        }
 
         return (
             <ViewContainer>

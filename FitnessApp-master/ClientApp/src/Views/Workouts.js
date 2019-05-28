@@ -8,12 +8,6 @@ import ViewContainer from "../ViewComponents/ViewContainer";
 import WorkoutsList from '../ViewComponents/WorkoutsList';
 import WorkoutsForm from '../ViewComponents/WorkoutsForm';
 
-//const exercises = [
-//    {"id" : "1", "name" : "Knäböj" },
-//    {"id" : "2", "name" : "Armhävningar" },
-//    {"id" : "3", "name" : "Armhävningar" },
-//    {"id" : "4", "name" : "Cykling" }];
-
 class WorkoutsConnect extends React.Component {
 
     constructor(props) {
@@ -55,20 +49,7 @@ class WorkoutsConnect extends React.Component {
         WorkoutsService.add(this.props.user.id, workout, this.serviceCallback);
     }
 
-    hasUser() {
-        if (this.props.user === "") {
-            return (
-                <Redirect to={{
-                    pathname: "/"
-                }}
-                />
-            );
-        }
-    }
-
     render() {
-
-        this.hasUser()
 
         let rowStyle = {
             marginLeft: "0px",
@@ -82,6 +63,15 @@ class WorkoutsConnect extends React.Component {
             padding: "20px",
             height: "auto"
         };
+
+        if (this.props.user === "") {
+            return (
+                <Redirect to={{
+                    pathname: "/"
+                }}
+                />
+            );
+        }
 
         return (
             <ViewContainer>
