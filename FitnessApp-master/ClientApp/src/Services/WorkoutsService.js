@@ -14,10 +14,8 @@ export default class WorkoutsService {
             }
         })
             .then(function (res) {
+                let exList = [];
                 if (res.data.length > 0) {
-
-                    let exList = [];
-
                     for (let i = 0; i < res.data.length; i++) {
                         exList.push(
                             new Exercise(
@@ -26,9 +24,8 @@ export default class WorkoutsService {
                                 res.data[i].description)
                         )
                     };
-
-                    callback(exList);
                 }
+                callback(exList);
             })
             .catch(function (error) {
                 console.log("error occured: ", error);
@@ -43,9 +40,8 @@ export default class WorkoutsService {
             }
         })
             .then(function (res) {
+                let workoutslist = [];
                 if (res.data.workouts.length > 0) {
-                    let workoutslist = [];
-
                     for (var i = 0; i < res.data.workouts.length; i++) {
                         let workout = res.data.workouts[i];
                         let exercises = workout.exercises;
@@ -68,8 +64,8 @@ export default class WorkoutsService {
                         );
                         workoutslist.push(model);
                     }
-                    callback(workoutslist);
                 }
+                callback(workoutslist);
             })
             .catch(function (error) {
                 console.log("error occured: ", error);
@@ -89,15 +85,13 @@ export default class WorkoutsService {
     }
 
     static add(userid, workout, callback) {
-
-        axios.post('workouts/add/', 
-            {
-                "userid": userid,
-                "starttime": workout.starttime,
-                "endtime": workout.endtime,
-                "exerciseid": workout.exerciseid
-            }
-        )
+        var data = {
+            "userid": userid,
+            "starttime": workout.starttime,
+            "endtime": workout.endtime,
+            "exerciseid": workout.exerciseid
+        };
+        axios.post('workouts/add/', data)
             .then(function (res) {
                 WorkoutsService.List(userid, callback);
             })

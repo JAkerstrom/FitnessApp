@@ -13,9 +13,9 @@ export default class MealsService {
             }
         })
             .then(function (res) {
+                let dishlist = [];
                 if (res.data.length > 0) {
 
-                    let dishlist = [];
 
                     for (let i = 0; i < res.data.length; i++) {
                         dishlist.push(
@@ -26,8 +26,8 @@ export default class MealsService {
                         )
                     };
 
-                    callback(dishlist);
                 }
+                callback(dishlist);
             })
             .catch(function (error) {
                 console.log("error occured: ", error);
@@ -42,8 +42,8 @@ export default class MealsService {
             }
         })
             .then(function (res) {
+                let mealsslist = [];
                 if (res.data.meals.length > 0) {
-                    let mealsslist = [];
 
                     for (var i = 0; i < res.data.meals.length; i++) {
                         let meal = res.data.meals[i];
@@ -66,8 +66,8 @@ export default class MealsService {
                         );
                         mealsslist.push(model);
                     }
-                    callback(mealsslist);
                 }
+                callback(mealsslist);
             })
             .catch(function (error) {
                 console.log("error occured: ", error);

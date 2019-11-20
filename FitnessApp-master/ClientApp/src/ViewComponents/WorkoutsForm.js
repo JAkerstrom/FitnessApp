@@ -19,6 +19,26 @@ export default class WorkoutsForm extends React.Component {
 
         this.add = this.add.bind(this);
         this.callback = this.callback.bind(this);
+        this.enableClick = this.enableClick.bind(this);
+    }
+
+
+    enableClick() {
+        if (this.state.date === "") {
+            return true;
+        } else if (this.state.starttime === "") {
+            return true;
+        } else if (this.state.endtime === "") {
+            return true;
+        } else if (this.state.exercises === "" || this.state.exercises === "0") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        this.enableClick();
     }
 
     add(e) {
@@ -110,7 +130,7 @@ export default class WorkoutsForm extends React.Component {
                             name="exercises"
                         />
                     </div>
-                    <button onClick={this.add}>Spara</button>
+                    <button onClick={this.add} disabled={this.enableClick()}>Spara</button>
                 </div>
             </div>
         );

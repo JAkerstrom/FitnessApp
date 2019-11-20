@@ -21,6 +21,11 @@ export default class WorkoutsList extends React.Component {
     }
 
     renderWorkouts() {
+
+        let noPadding = {
+            padding: "0px"
+        }
+
         if (this.props.items.length > 0) {
             return (
                 this.props.items.map(item => (
@@ -30,21 +35,32 @@ export default class WorkoutsList extends React.Component {
                         className="list-group-item">
                         <div className="row">
                             <div className="col-3">
-                                <h4>{DateService.DayAsText(item.starttime)}, 
-                                    {DateService.DayAndMonth(item.starttime)}
-                                </h4>
+                                <div className="col-xs-12">
+                                    <p>{DateService.DayAsText(item.starttime)}</p>
+                                </div>
+                                <div className="col-xs-12">
+                                    <p>{DateService.DayAndMonth(item.starttime)}</p>
+                                </div>
                             </div>
                             <div className="col-3">
                                 <p> {DateService.Time(item.starttime)} - {DateService.Time(item.endtime)}</p>
                             </div>
-                            <div className="col-3">
+                            <div className="col-4">
                                 {this.renderExercises(item)}
                             </div>
-                            <div className="col-3">
-                                <button onClick={this.toggleDone} className="btn btn-sm">
-                                    <span className="fas fa-bullseye" />
-                                </button>
-                                <button onClick={this.delete} className="btn btn-sm float-right">x</button>
+                            <div className="col-2">
+                                <div className="row">
+
+                                    <div style={noPadding} className="col-6">
+                                        <button onClick={this.toggleDone} className="btn btn-sm pull-right">
+                                            <span className="fas fa-bullseye" />
+                                        </button>
+                                    </div>
+                                    <div style={noPadding} className="col-6">
+                                        <button onClick={this.delete} className="btn btn-sm pull-right">x</button>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </li>
