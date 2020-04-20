@@ -69,7 +69,7 @@ export default class RegisterForm extends React.Component {
             padding: "20px"
         }
 
-        let classnames = "btn btn-lg";
+        let classnames = "btn btn-lg m-0";
         let theme = "#338683";
 
         return (

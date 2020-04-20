@@ -66,7 +66,7 @@ export default class LoginForm extends React.Component {
             padding: "20px"
         }
 
-        let classnames = "btn btn-lg";
+        let classnames = "btn btn-lg m-0";
         let theme = "#456792";
 
         return (
