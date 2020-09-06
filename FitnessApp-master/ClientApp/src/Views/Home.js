@@ -1,9 +1,9 @@
 ﻿import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, BrowserRouter as Router } from 'react-router-dom';
-import Jumbotron from '../ViewComponents/Jumbotron';
-import TeaserList from '../ViewComponents/TeaserList';
-import FormCard from '../ViewComponents/FormCard';
+import Jumbotron from '../ViewComponents/Shared/Jumbotron';
+import TeaserList from '../ViewComponents/Shared/TeaserList';
+import FormCard from '../ViewComponents/Shared/FormCard';
 
 class HomeConnect extends React.Component {
 
@@ -17,14 +17,24 @@ class HomeConnect extends React.Component {
         let title = "Rubriken först";
         return (
             <>
-                {this.props.user === "" ? <Jumbotron /> : <div></div>}
-                {this.props.user === "" ? <TeaserList /> : <div></div>}
-                <FormCard img={img} title={title} theme={"black"}>                
-                    <p className="card-text p-3">
-                        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    </p>
-                    <p className="card-text p-3 italic">- Jonny Ponny</p>
-                </FormCard>
+                <div className="row">
+                    <div className="col-12" style={{paddingRight: "0px"}}>
+                        {this.props.user === "" ? <Jumbotron redirectPath={"/Register"} /> : <div></div>}
+                    </div>
+                </div>
+                <div className="row">
+                    {this.props.user === "" ? <TeaserList /> : <div></div>}
+                </div>
+                <div className="row" style={{ marginTop: "10px"}}>
+                    <div className="col-12">
+                        <FormCard img={img} title={title} theme={"black"}>                
+                            <p className="card-text p-3">
+                                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                            </p>
+                            <p className="card-text p-3 italic">- Jonny Ponny</p>
+                        </FormCard>
+                    </div>
+                </div>
             </>
         )
     }

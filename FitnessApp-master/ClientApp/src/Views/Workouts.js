@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { withRouter, BrowserRouter as Router } from 'react-router-dom';
 
 import WorkoutsService from '../Services/WorkoutsService';
-import ViewContainer from "../ViewComponents/ViewContainer";
-import WorkoutsList from '../ViewComponents/WorkoutsList';
-import WorkoutsForm from '../ViewComponents/WorkoutsForm';
+import ViewContainer from "../ViewComponents/Shared/ViewContainer";
+import WorkoutsList from '../ViewComponents/Workouts/WorkoutsList';
+import WorkoutsForm from '../ViewComponents/Workouts/WorkoutsForm';
 
 class WorkoutsConnect extends React.Component {
 
@@ -57,11 +57,14 @@ class WorkoutsConnect extends React.Component {
             height: "auto"
         }
 
-        let divStyle = {
-            backgroundColor: "black",
-            margin: "0px",
+        let listStyle = {
             padding: "20px",
             height: "auto"
+        };
+
+        let formStyle = {
+            padding: "20px",
+            height: "550px"
         };
 
         if (this.props.user === "") {
@@ -76,16 +79,16 @@ class WorkoutsConnect extends React.Component {
         return (
             <ViewContainer>
                 <div style={rowStyle} className="row">
-                    <div style={divStyle} className="col-md-6 col-xs-12 pull-left">
+                    <div style={listStyle} className="col-12 col-lg-8 pull-right">
+                        <WorkoutsList
+                            items={this.state.workouts}
+                            delete={this.delete} />
+                    </div>
+                    <div style={formStyle} className="col-12 col-lg-4 pull-left">
                         <WorkoutsForm
                             selectlist={this.state.exercises}
                             add={this.add}
                         />
-                    </div>
-                    <div style={divStyle} className="col-md-6 col-xs-12 pull-right">
-                        <WorkoutsList
-                            items={this.state.workouts}
-                            delete={this.delete} />
                     </div>
                 </div>
                     

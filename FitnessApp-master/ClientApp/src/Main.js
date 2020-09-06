@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, BrowserRouter as Router } from 'react-router-dom';
 
@@ -6,9 +6,9 @@ import changeUserState from './Redux/Actions/UserActions';
 import UserService from '././Services/UserService';
 
 //ViewComponents
-import Navbar from './ViewComponents/Navbar';
-import Container from './Container';
-import Footer from './ViewComponents/Footer';
+import Navbar from './ViewComponents/Shared/Navbar';
+import Container from './Routing/Container';
+import Footer from './ViewComponents/Shared/Footer';
 
 class MainConnect extends Component{
 
@@ -24,7 +24,9 @@ class MainConnect extends Component{
     }
 
     receiveResponse(res) {
+
         this.props.changeUserState(res.user);
+
     }
 
     login(email, password, errorcallback) {
@@ -55,24 +57,24 @@ class MainConnect extends Component{
         };
 
         return (
-            <div className="container-fluid" style={mainStyle}>
+            <>
                 <Navbar user={this.props.user} logout={this.logout} />
-                <Container
-                    user={this.props.user}
-                    message={this.props.message}
-                    receiver={this.props.receiver}
-                    login={this.login}
-                    register={this.register}
-                    update={this.update}
-                    delete={this.delete} />
-                <Footer />
-            </div>
+                <div className="container-fluid" style={mainStyle}>
+                    <Container
+                        user={this.props.user}
+                        message={this.props.message}
+                        receiver={this.props.receiver}
+                        login={this.login}
+                        register={this.register}
+                        update={this.update}
+                        delete={this.delete} />
+                </div>
+            </>
             )
     }
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {       
         user: state.user
     };

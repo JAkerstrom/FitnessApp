@@ -1,13 +1,9 @@
-﻿import React from 'react';
-import InputField from '../ViewComponents/InputField';
-import InputButton from '../ViewComponents/InputButton';
-import StyleEnums from '../Utils/StyleEnums';
-import InputTypes from '../Utils/InputTypes';
+﻿import React, { Component } from 'react';
+import InputField from '../Shared/InputField';
+import InputButton from '../Shared/InputButton';
+import InputTypes from '../../Utils/InputTypes';
 
-
-//This class is almost identical to LoginForm.js, but it will contain different logic later on so
-//they should probably stay as two separate classes.
-export default class RegisterForm extends React.Component {
+export default class LoginForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,7 +13,8 @@ export default class RegisterForm extends React.Component {
             password: "",
             validemail: false,
             validpassword: false,
-            errormessage: ""
+            errormessage: "",
+            useTestUser: false
         }
 
         this.addEmail = this.addEmail.bind(this);
@@ -25,6 +22,7 @@ export default class RegisterForm extends React.Component {
         this.errorCallback = this.errorCallback.bind(this);
         this.isValid = this.isValid.bind(this);
         this.submit = this.submit.bind(this);
+        this.toggleTestUser = this.toggleTestUser.bind(this);
     }
 
     addEmail(e, valid) {
@@ -52,6 +50,21 @@ export default class RegisterForm extends React.Component {
         this.props.handleSubmit(this.state.email, this.state.password, this.errorCallback);
     }
 
+    toggleTestUser(e) {
+        this.setState({ useTestUser: e.target.checked })
+        if (e.target.checked) {
+            this.addPassword("test", true);
+            this.addEmail("user@test.com", true);
+        } else {
+            this.setState({
+                password: "",
+                email: "",
+                validpassword: false,
+                validemail: false
+            });
+        }
+    }
+
     isValid() {
         return this.state.validemail && this.state.validpassword;
     }
@@ -70,7 +83,7 @@ export default class RegisterForm extends React.Component {
         }
 
         let classnames = "btn btn-lg m-0";
-        let theme = "#338683";
+        let theme = "#456792";
 
         return (
             <div className="col-12 p-0">
@@ -89,12 +102,17 @@ export default class RegisterForm extends React.Component {
                             placeholder={"Lösenord.."}
                             readonly={false} />
 
-                        {this.renderMessage()}
+                        <div className="form-check">
+                            <input type="checkbox" id="testUserCheck" className="form-check-input" onChange={this.toggleTestUser} checked={this.state.useTestUser}/>
+                            <label className="form-check-label">Använd testanvändare</label>
+                        </div>
+
+                        { this.renderMessage() }
                     </div>
-                    <InputButton theme={theme} class={classnames} clickHandler={this.submit} disabled={!this.isValid()} value={"Registrera"} />                    
+                    <InputButton theme={theme} class={classnames} clickHandler={this.submit} disabled={!this.isValid()} value={"Logga in"} />
                 </form>
             </div>
-        );
+            );
     }
-}
 
+}

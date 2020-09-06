@@ -17,3 +17,14 @@ C:\Dev\Privat\FitnessApp\Remote\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.
 C:\Dev\Privat\FitnessApp\Remote\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.AssemblyInfo.cs
 C:\Dev\Privat\FitnessApp\Remote\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.dll
 C:\Dev\Privat\FitnessApp\Remote\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.pdb
+C:\Dev\FitnessApp\fitnessData\bin\Debug\netcoreapp2.2\fitnessData.deps.json
+C:\Dev\FitnessApp\fitnessData\bin\Debug\netcoreapp2.2\fitnessData.runtimeconfig.json
+C:\Dev\FitnessApp\fitnessData\bin\Debug\netcoreapp2.2\fitnessData.runtimeconfig.dev.json
+C:\Dev\FitnessApp\fitnessData\bin\Debug\netcoreapp2.2\fitnessData.dll
+C:\Dev\FitnessApp\fitnessData\bin\Debug\netcoreapp2.2\fitnessData.pdb
+C:\Dev\FitnessApp\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.csprojAssemblyReference.cache
+C:\Dev\FitnessApp\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.csproj.CoreCompileInputs.cache
+C:\Dev\FitnessApp\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.AssemblyInfoInputs.cache
+C:\Dev\FitnessApp\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.AssemblyInfo.cs
+C:\Dev\FitnessApp\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.dll
+C:\Dev\FitnessApp\fitnessData\obj\Debug\netcoreapp2.2\fitnessData.pdb

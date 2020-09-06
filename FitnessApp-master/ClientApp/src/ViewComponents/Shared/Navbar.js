@@ -19,14 +19,14 @@ export default class Navbar extends React.Component {
         if (this.props.user !== "") {
             return [
                 <React.Fragment>
-                    <li className="nav-item"><NavLink exact to="/" className="nav-link">Home</NavLink></li>
-                    <li className="nav-item yellow"><NavLink to="/Workouts" className="nav-link yellow">Workouts</NavLink></li>
-                    <li className="nav-item purple"><NavLink to="/Food" className="nav-link purple">Food</NavLink></li>
-                    <li className="nav-item red"><NavLink to="/Account" className="nav-link red">Account</NavLink></li>
+                    <li className="nav-item"><NavLink exact to="/" className="nav-link">Start</NavLink></li>
+                    <li className="nav-item yellow"><NavLink to="/Workouts" className="nav-link yellow">Träning</NavLink></li>
+                    <li className="nav-item purple"><NavLink to="/Food" className="nav-link purple">Matdagbok</NavLink></li>
+                    <li className="nav-item red"><NavLink to="/Account" className="nav-link red">Mitt konto</NavLink></li>
 
                 </React.Fragment>,
                 <React.Fragment>
-                    <li className="nav-item"><a className="nav-link" onClick={(e) => { this.logout(e) }} href="">Log out</a></li>
+                    <li className="nav-item"><a className="nav-link" onClick={(e) => { this.logout(e) }} href="">Logga ut</a></li>
                 </React.Fragment>
             ]
         }
@@ -50,7 +50,7 @@ export default class Navbar extends React.Component {
         let links = this.renderLinks();
 
         return (              
-            <div className="navbar navbar-expand-lg navbar-dark" style={navBarStyle}>
+            <div className="navbar navbar-expand-lg fixed-top navbar-dark" style={navBarStyle}>
                 <a className="navbar-brand" href="#">FitnessApp</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

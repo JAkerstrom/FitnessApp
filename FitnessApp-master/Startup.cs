@@ -1,6 +1,7 @@
 using fitnessapp.Services;
 using fitnessData.AppData;
 using fitnessData.Auth;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +28,6 @@ namespace fitnessapp
 
             services.AddDbContext<AuthDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("AuthConnection")));
-
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

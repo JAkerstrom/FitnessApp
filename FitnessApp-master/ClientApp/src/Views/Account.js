@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, BrowserRouter as Router } from 'react-router-dom';
-import EditAccount from '../ViewComponents/EditAccount';
+import EditAccount from '../ViewComponents/EditAccount/EditAccount';
 import { Redirect } from 'react-router-dom';
 
 const Types = {

@@ -1,15 +1,12 @@
 ﻿import React, { Component } from 'react';
-import InputField from '../ViewComponents/InputField';
-import InputButton from '../ViewComponents/InputButton';
-import InputTypes from '../Utils/InputTypes';
-import StringConstants from "../Utils/stringConstants";
-import ViewContainer from "../ViewComponents/ViewContainer";
 
-import { connect } from 'react-redux';
-import { withRouter, BrowserRouter as Router } from 'react-router-dom';
+import InputField from '../Shared/InputField';
+import InputButton from '../Shared/InputButton';
+import InputTypes from '../../Utils/InputTypes';
+import StringConstants from "../../Utils/stringConstants";
 
 
-class EditAccountConnect extends React.Component {
+export default class EditAccountForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -22,11 +19,46 @@ class EditAccountConnect extends React.Component {
             statusmessage: ""
         }
 
-        this.updateEmail = this.updateEmail.bind(this);
-        this.updateUsername = this.updateUsername.bind(this);
         this.callback = this.callback.bind(this);
         this.doSave = this.doSave.bind(this);
         this.doDelete = this.doDelete.bind(this);
+        this.updateEmail = this.updateEmail.bind(this);
+        this.updateUsername = this.updateUsername.bind(this);
+    }
+
+    callback(status) {
+        if (status === StringConstants.success) {
+            this.setState({
+                user: this.state.copy.copyMe(),
+                statusmessage: "Dina uppgifter är uppdaterade"
+            });
+        }
+        else {
+            this.setState({
+                statusmessage: "Uppdateringen misslyckades"
+            });
+        }
+    }
+
+    renderMessage() {
+        if (this.state.statusmessage !== "") {
+            return <div style={{ margin: "10px" }} className="alert alert-secondary" role="alert">
+                {this.state.statusmessage}</div>;
+        }
+    }
+
+    doSave(e) {
+        e.preventDefault();
+        this.props.update(this.state.copy, this.callback);
+    }
+
+    doDelete(e) {
+        e.preventDefault();
+        this.props.delete(this.state.user);
+    }
+
+    isValid() {
+        return this.state.user.differsFrom(this.state.copy) && this.state.copy.isValid() && this.state.validEmailInput && this.state.validUsernameInput;
     }
 
     updateEmail(e, valid) {
@@ -51,64 +83,29 @@ class EditAccountConnect extends React.Component {
         });
     }
 
-    callback(status) {
-        if (status === StringConstants.success) {
-            this.setState({
-                user: this.state.copy.copyMe(),
-                statusmessage: "Dina uppgifter är uppdaterade"
-            });
-        }
-        else
-        {
-            this.setState({
-                statusmessage: "Uppdateringen misslyckades"
-            });
-        }
-    }
-
-    renderMessage() {
-        if (this.state.statusmessage !== "") {
-            return <div style={{ margin: "10px" }} className="alert alert-secondary" role="alert">
-                {this.state.statusmessage}</div>;
-        } 
-    }
-
-    doSave(e) {
-        e.preventDefault();
-        this.props.update(this.state.copy, this.callback);
-    }
-
-    doDelete(e) {
-        e.preventDefault();
-        this.props.delete(this.state.user);
-    }
-
-    isValid() {
-        return this.state.user.differsFrom(this.state.copy) && this.state.copy.isValid() && this.state.validEmailInput && this.state.validUsernameInput;
-    }
-
-
     render() {
-
-        let formStyle = {
-            padding: "20px"
-        }
-
-        let cardstyle = {
-            height: "100%"
-        }
 
         let red = "#e7683f";
         let grey = "#808080";
         let className = "btn btn-lg";
 
-        return (
-            <ViewContainer>
-                <div className="card" style={cardstyle}>
-                    <div className="row">
+        let cardstyle = {
+            height: "100%"
+        }
 
+        let formStyle = {
+            minWidth: "262px",
+            maxWidth: "262px"
+        }
+
+        return (
+            <div className="card" style={cardstyle}>
+                <div className="card-header text-center card-header-red">
+                    <h3 className="text-center">Mina uppgifter</h3>
+                </div>
+                <div className="card-body">
+                    <div className="row">
                         <div className="col-6">
-                            <h3 className="text-center">Mina uppgifter</h3>
                             <form className="form" style={formStyle}>
                                 <InputField
                                     inputtype={InputTypes.Email}
@@ -135,7 +132,7 @@ class EditAccountConnect extends React.Component {
                                 clickHandler={this.doSave}
                                 disabled={!this.isValid()}
                                 theme={grey}
-                                class={className}
+                                class={className + ' m-0'}
                                 value={"Spara"} />
 
                             <InputButton
@@ -146,18 +143,8 @@ class EditAccountConnect extends React.Component {
                                 value={"Radera konto"} />
                         </div>
                     </div>
-
                 </div>
-            </ViewContainer>
+            </div>
         );
     }
 }
-
-function mapStateToProps(state) {
-    return {
-        user: state.user
-    };
-}
-
-var EditAccount = withRouter(connect(mapStateToProps)(EditAccountConnect));
-export default EditAccount;

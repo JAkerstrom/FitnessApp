@@ -4530,11 +4530,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\Privat\\FitnessApp\\Remote\\fitnessData\\fitnessData.csproj",
+      "projectUniqueName": "C:\\Dev\\FitnessApp\\fitnessData\\fitnessData.csproj",
       "projectName": "fitnessData",
-      "projectPath": "C:\\Dev\\Privat\\FitnessApp\\Remote\\fitnessData\\fitnessData.csproj",
+      "projectPath": "C:\\Dev\\FitnessApp\\fitnessData\\fitnessData.csproj",
       "packagesPath": "C:\\Users\\johan\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\Privat\\FitnessApp\\Remote\\fitnessData\\obj\\",
+      "outputPath": "C:\\Dev\\FitnessApp\\fitnessData\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

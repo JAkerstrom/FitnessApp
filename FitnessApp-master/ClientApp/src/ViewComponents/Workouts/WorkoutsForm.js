@@ -1,9 +1,12 @@
 ﻿import React, { Component } from 'react';
-import DatePicker from '../ViewComponents/DatePicker';
-import SelectList from '../ViewComponents/SelectList';
-import WorkoutCreateVM from '../Models/WorkoutCreateVM';
-import DateService from '../Services/DateService';
-
+import DateTimePicker from '../Shared/DateTimePicker';
+import SelectList from '../Shared/SelectList';
+import WorkoutCreateVM from '../../Models/WorkoutCreateVM';
+import DateService from '../../Services/DateService';
+import InputButton from '../Shared/InputButton';
+import moment from 'moment';
+import 'moment/locale/se';
+moment.locale('es');
 
 export default class WorkoutsForm extends React.Component {
 
@@ -11,9 +14,9 @@ export default class WorkoutsForm extends React.Component {
         super(props);
 
         this.state = {
-            date: "",
-            starttime: "",
-            endtime: "",
+            date: new Date(),
+            starttime: moment().format('LT'),
+            endtime: moment().format('LT'),
             exercises: ""
         }
 
@@ -56,10 +59,10 @@ export default class WorkoutsForm extends React.Component {
     }
 
     formatDates() {
-        let date = this.state.date;
+        let date = moment(this.state.date).format('YYYY-MM-DD');
         return [
-            DateService.SetTime(date, this.state.starttime),
-            DateService.SetTime(date, this.state.endtime)
+            DateService.SetTime(date, this.state.starttime + ':00'),
+            DateService.SetTime(date, this.state.endtime + ':00')
         ];
     }
 
@@ -87,35 +90,36 @@ export default class WorkoutsForm extends React.Component {
     }
 
     render() {
+
+        let classnames = "btn btn-md m-0";
+        let theme = "#cda73c";
+
         let cardstyle = {
             height: "100%",
-            padding: "20px"
+            maxWidth: "350px"
         }
 
         return (
             <div className="card" style={cardstyle}>
-                <div className="card-header text-center">
-                    <h2>Registrera träningspass</h2>
+                <div className="card-header text-center card-header-yellow">
+                    <h2>Nytt pass</h2>
                 </div>
-                <div>
+                <div className="card-body">
+                    <DateTimePicker
+                        value={this.state.date}
+                        name={"date"}
+                        label={"datum"}
+                        type={"date"}
+                        callback={this.callback} />
+
+                    <DateTimePicker
+                        value={this.state.starttime}
+                        name={"start"}
+                        label={"starttid"}
+                        type={"time"}
+                        callback={this.callback} />
                     <div className="form-group">
-                        <DatePicker
-                            value={this.state.date}
-                            name={"date"}
-                            label={"datum"}
-                            type={"date"}
-                            callback={this.callback} />
-                    </div>
-                    <div className="form-group">
-                        <DatePicker
-                            value={this.state.starttime}
-                            name={"start"}
-                            label={"starttid"}
-                            type={"time"}
-                            callback={this.callback} />
-                    </div>
-                    <div className="form-group">
-                        <DatePicker
+                        <DateTimePicker
                             value={this.state.endtime}
                             name={"end"}
                             label={"sluttid"}
@@ -130,7 +134,8 @@ export default class WorkoutsForm extends React.Component {
                             name="exercises"
                         />
                     </div>
-                    <button onClick={this.add} disabled={this.enableClick()}>Spara</button>
+
+                    <InputButton theme={theme} class={classnames} clickHandler={this.add} disabled={this.enableClick()} value={"Spara"} />
                 </div>
             </div>
         );

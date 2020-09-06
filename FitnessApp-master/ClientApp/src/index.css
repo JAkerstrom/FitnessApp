@@ -4,6 +4,20 @@ body {
     background-image: url("/Images/equipment2.jpg");
     background-size: cover;
     background-attachment: fixed;
+    overflow-x:hidden;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #565151;
+    border-radius: 50rem;
 }
 
 .btn {  
@@ -12,6 +26,33 @@ body {
     font-weight:600;
     font-family: Arial;
     background-color: white;
+}
+
+.card{
+    /*border-radius: 0rem;*/
+    /*border: none;*/
+    border: 2px solid #161515;
+}
+
+.card .card-header {
+    border-bottom:1px solid black;
+}
+
+.card-header-purple {
+    background-color: #e3ccf1;
+}
+
+.card-header-yellow {
+    background-color: #f3dea3;
+}
+
+.card-header-red {
+    background-color: #ff6f6f;
+}
+
+.form-group input, .form-group select {
+    border-radius: 0rem;
+    border: thin solid grey;
 }
 
 #navbarNav .navbar-nav .nav-item a {
@@ -72,4 +113,16 @@ ul li a {
 
 .active {
     background-color: #111;
+}
+
+.react-date-picker input, .react-time-picker input {
+    border: none;
+}
+
+.react-time-picker__inputGroup, .react-date-picker__inputGroup {
+    height: calc(2.25rem + 2px);
+}
+
+.react-date-picker, .react-time-picker {
+    width: 100% !important;
 }

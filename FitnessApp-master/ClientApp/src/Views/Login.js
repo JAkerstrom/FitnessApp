@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
-import LoginForm from '../ViewComponents/LoginForm';
+import LoginForm from '../ViewComponents/Public/LoginForm';
 import { Redirect } from 'react-router-dom';
-import FormCard from '../ViewComponents/FormCard';
+import FormCard from '../ViewComponents/Shared/FormCard';
 
 
 export default class Login extends React.Component {

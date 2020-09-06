@@ -8,14 +8,16 @@ export default class Card extends React.Component {
 
     render() {
         let cardStyle = {
-            borderRadius: ".0rem",
-            margin: "40px",
-            width: "25vw"
+            margin: "20px",
+            overflow: "hidden",
+            height: "490px"
         }
 
         let imgStyle = {
             width: "100%",
-            height: "20vw",
+            height: "75%",
+            //height: "20vw",
+            //minHeight: "200px",
             objectFit: "cover"
         }
 

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { withRouter, BrowserRouter as Router } from 'react-router-dom';
 
 import MealsService from '../Services/MealsService';
-import ViewContainer from '../ViewComponents/ViewContainer';
-import MealsList from '../ViewComponents/MealsList';
-import MealsForm from '../ViewComponents/MealsForm';
+import ViewContainer from '../ViewComponents/Shared/ViewContainer';
+import MealsList from '../ViewComponents/Meals/MealsList';
+import MealsForm from '../ViewComponents/Meals/MealsForm';
 
 class FoodConnect extends React.Component {
 
@@ -57,10 +57,14 @@ class FoodConnect extends React.Component {
             height: "auto"
         };
 
-        let divStyle = {
-            margin: "0px",
+        let listStyle = {
             padding: "20px",
             height: "auto"
+        };
+
+        let formStyle = {
+            padding: "20px",
+            height: "450px"
         };
 
         if (this.props.user === "") {
@@ -75,16 +79,16 @@ class FoodConnect extends React.Component {
         return (
             <ViewContainer>
                 <div style={rowStyle} className="row">
-                    <div style={divStyle} className="col-md-6 col-xs-12 pull-left">
-                        <MealsForm
-                            selectlist={this.state.dishes}
-                            add={this.add}
-                        />
-                    </div>
-                    <div style={divStyle} className="col-md-6 col-xs-12 pull-right">
+                    <div style={listStyle} className="col-12 col-lg-8 pull-right">
                         <MealsList
                             items={this.state.meals}
                             delete={this.delete}
+                        />
+                    </div>
+                    <div style={formStyle} className="col-12 col-lg-4 pull-left">
+                        <MealsForm
+                            selectlist={this.state.dishes}
+                            add={this.add}
                         />
                     </div>
                 </div>

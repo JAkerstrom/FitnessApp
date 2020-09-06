@@ -46,6 +46,11 @@ namespace fitnessapp.Services
 
         public ResponseVM Delete(int id)
         {
+            if (id == 1)
+            {
+                return new ResponseVM(false);
+            }
+
             var user = _userContext.Users.Find(id);
 
             if (user == null)
@@ -60,6 +65,9 @@ namespace fitnessapp.Services
 
         public ResponseVM Update(UserDTO user)
         {
+            if (user.IsTestUser) {
+                return new ResponseVM(false, user);
+            }
             var updatedUser = _userContext.Users.Find(user.Id);
             updatedUser.Email = user.Email;
             updatedUser.UserName = user.UserName;

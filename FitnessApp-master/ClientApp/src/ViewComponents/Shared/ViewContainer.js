@@ -9,7 +9,7 @@ export default class ViewContainer extends React.Component {
     render() {
 
         let cardStyle = {
-            margin: "20px",
+            margin: "0px",
             borderRadius: ".0rem",
             clear: "both",
             padding: "0px",

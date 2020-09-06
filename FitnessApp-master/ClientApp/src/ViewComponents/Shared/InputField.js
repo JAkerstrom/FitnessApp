@@ -1,6 +1,6 @@
 ﻿import React, { Component, Fragment } from 'react';
-import InputTypes from '../Utils/InputTypes';
-import StyleEnums from '../Utils/StyleEnums';
+import InputTypes from '../../Utils/InputTypes';
+import StyleEnums from '../../Utils/StyleEnums';
 
 // InputField
 // inputtype: one of Types below (mandatory)

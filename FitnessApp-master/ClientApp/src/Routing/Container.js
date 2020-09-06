@@ -4,16 +4,16 @@ import { connect } from 'react-redux';
 //Routing
 import { Route, Switch } from 'react-router-dom';
 import { withRouter, BrowserRouter as Router } from 'react-router-dom';
-import PrivateRoute from './ViewComponents/PrivateRoute';
+import PrivateRoute from './PrivateRoute';
 
 //Views -public
-import Home from './Views/Home';
-import Login from './Views/Login';
-import Register from './Views/Register';
+import Home from '../Views/Home';
+import Login from '../Views/Login';
+import Register from '../Views/Register';
 //Views -private
-import Food from './Views/Food';
-import Account from './Views/Account';
-import Workouts from './Views/Workouts';
+import Food from '../Views/Food';
+import Account from '../Views/Account';
+import Workouts from '../Views/Workouts';
 
 
 
@@ -26,7 +26,7 @@ class ContainerConnect extends React.Component {
     render() {
         let divStyle = {
             borderRadius: 0,
-            padding: "0px",
+            padding: "56px 0px 0px 0px",
             margin: "0px",
             border: "none",
             height: "auto",

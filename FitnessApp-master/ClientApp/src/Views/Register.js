@@ -1,6 +1,6 @@
 ﻿import React from 'react';
-import RegisterForm from '../ViewComponents/RegisterForm';
-import FormCard from '../ViewComponents/FormCard';
+import RegisterForm from '../ViewComponents/Public/RegisterForm';
+import FormCard from '../ViewComponents/Shared/FormCard';
 import { Redirect } from 'react-router-dom';
 
 

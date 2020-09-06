@@ -1,9 +1,13 @@
-﻿import React, { Component } from 'react';
-import InputField from '../ViewComponents/InputField';
-import InputButton from '../ViewComponents/InputButton';
-import InputTypes from '../Utils/InputTypes';
+﻿import React from 'react';
+import InputField from '../Shared/InputField';
+import InputButton from '../Shared/InputButton';
+import StyleEnums from '../../Utils/StyleEnums';
+import InputTypes from '../../Utils/InputTypes';
 
-export default class LoginForm extends React.Component {
+
+//This class is almost identical to LoginForm.js, but it will contain different logic later on so
+//they should probably stay as two separate classes.
+export default class RegisterForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -48,7 +52,6 @@ export default class LoginForm extends React.Component {
         this.props.handleSubmit(this.state.email, this.state.password, this.errorCallback);
     }
 
-
     isValid() {
         return this.state.validemail && this.state.validpassword;
     }
@@ -67,7 +70,7 @@ export default class LoginForm extends React.Component {
         }
 
         let classnames = "btn btn-lg m-0";
-        let theme = "#456792";
+        let theme = "#338683";
 
         return (
             <div className="col-12 p-0">
@@ -86,12 +89,12 @@ export default class LoginForm extends React.Component {
                             placeholder={"Lösenord.."}
                             readonly={false} />
 
-                        { this.renderMessage() }
+                        {this.renderMessage()}
                     </div>
-                    <InputButton theme={theme} class={classnames} clickHandler={this.submit} disabled={!this.isValid()} value={"Logga in"} />
+                    <InputButton theme={theme} class={classnames} clickHandler={this.submit} disabled={!this.isValid()} value={"Registrera"} />                    
                 </form>
             </div>
-            );
+        );
     }
-
 }
+

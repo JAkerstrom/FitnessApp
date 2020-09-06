@@ -13,6 +13,8 @@ namespace fitnessapp.Models
         public string Email { get; set; }
         public string Token { get; set; }
 
+        public bool IsTestUser => Id == 1;
+
         public static UserDTO Create(ApplicationUser user)
         {
             return new UserDTO()
