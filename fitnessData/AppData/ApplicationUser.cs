@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Security.Cryptography;
 
-namespace fitnessData.Auth
+namespace fitnessData.AppData
 {
-    public class ApplicationUser 
+    public class ApplicationUser
     {
         public int Id { get; set; }
         public string UserName { get; set; }
@@ -26,3 +26,4 @@ namespace fitnessData.Auth
         }
     }
 }
+

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace fitnessData.authmigrations
+namespace fitnessData.AppDataMigrations
 {
-    public partial class initial : Migration
+    public partial class AddUsersTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,7 @@ namespace fitnessData.authmigrations
                     Email = table.Column<string>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: false),
                     Token = table.Column<string>(nullable: true),
-                    TimeToLive = table.Column<long>(nullable: true)
+                    TimeToLive = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -14,7 +14,8 @@ export default class LoginForm extends React.Component {
             validemail: false,
             validpassword: false,
             errormessage: "",
-            useTestUser: false
+            useTestUser: false,
+            rememberMe: false
         }
 
         this.addEmail = this.addEmail.bind(this);
@@ -23,6 +24,32 @@ export default class LoginForm extends React.Component {
         this.isValid = this.isValid.bind(this);
         this.submit = this.submit.bind(this);
         this.toggleTestUser = this.toggleTestUser.bind(this);
+        this.toggleRememberMe = this.toggleRememberMe.bind(this);
+        this.RememberMe = this.RememberMe.bind(this);
+    }
+
+    componentDidMount() {
+        var password = localStorage.getItem("password") != null ? localStorage.getItem("password") : "";
+        var email = localStorage.getItem("email") != null ? localStorage.getItem("email") : "";
+        var rememberMe = localStorage.getItem("rememberMe") === "true";
+
+        this.addEmail(email, true);
+        this.addPassword(password, true);
+        this.setState({ rememberMe });
+    }
+
+    RememberMe() {
+
+        if (this.state.rememberMe) {
+
+            localStorage.setItem("email", this.state.email);
+            localStorage.setItem("password", this.state.password);
+            localStorage.setItem("rememberMe", this.state.rememberMe);
+        } else {
+            localStorage.removeItem('email');
+            localStorage.removeItem('password');
+            localStorage.removeItem('rememberMe')
+        }
     }
 
     addEmail(e, valid) {
@@ -47,6 +74,7 @@ export default class LoginForm extends React.Component {
 
     submit(e) {
         e.preventDefault();
+        this.RememberMe();             
         this.props.handleSubmit(this.state.email, this.state.password, this.errorCallback);
     }
 
@@ -63,6 +91,10 @@ export default class LoginForm extends React.Component {
                 validemail: false
             });
         }
+    }
+
+    toggleRememberMe(e) {
+        this.setState({ rememberMe: e.target.checked });
     }
 
     isValid() {
@@ -105,6 +137,11 @@ export default class LoginForm extends React.Component {
                         <div className="form-check">
                             <input type="checkbox" id="testUserCheck" className="form-check-input" onChange={this.toggleTestUser} checked={this.state.useTestUser}/>
                             <label className="form-check-label">Använd testanvändare</label>
+                        </div>
+
+                        <div className="form-check">
+                            <input type="checkbox" id="rememberMeCheck" className="form-check-input" onChange={this.toggleRememberMe} checked={this.state.rememberMe} />
+                            <label className="form-check-label">Kom ihåg mig</label>
                         </div>
 
                         { this.renderMessage() }

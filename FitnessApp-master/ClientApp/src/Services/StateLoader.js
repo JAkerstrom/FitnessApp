@@ -16,6 +16,7 @@ export default class StateLoader {
     }
 
     clearLocalStorage() {
-        window.localStorage.clear();
+        //window.localStorage.clear();
+        localStorage.removeItem('user')
     }
 }

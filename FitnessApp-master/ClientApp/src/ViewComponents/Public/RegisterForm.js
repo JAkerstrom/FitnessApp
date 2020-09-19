@@ -17,7 +17,8 @@ export default class RegisterForm extends React.Component {
             password: "",
             validemail: false,
             validpassword: false,
-            errormessage: ""
+            errormessage: "",
+            rememberMe: false
         }
 
         this.addEmail = this.addEmail.bind(this);
@@ -25,6 +26,22 @@ export default class RegisterForm extends React.Component {
         this.errorCallback = this.errorCallback.bind(this);
         this.isValid = this.isValid.bind(this);
         this.submit = this.submit.bind(this);
+        this.RememberMe = this.RememberMe.bind(this);
+        this.toggleRememberMe = this.toggleRememberMe.bind(this);
+    }
+
+    RememberMe() {
+
+        if (this.state.rememberMe) {
+
+            localStorage.setItem("email", this.state.email);
+            localStorage.setItem("password", this.state.password);
+            localStorage.setItem("rememberMe", this.state.rememberMe);
+        }
+    }
+
+    toggleRememberMe(e) {
+        this.setState({ rememberMe: e.target.checked });
     }
 
     addEmail(e, valid) {
@@ -49,6 +66,7 @@ export default class RegisterForm extends React.Component {
 
     submit(e) {
         e.preventDefault();
+        this.RememberMe(); 
         this.props.handleSubmit(this.state.email, this.state.password, this.errorCallback);
     }
 
@@ -88,6 +106,11 @@ export default class RegisterForm extends React.Component {
                             value={this.state.password}
                             placeholder={"Lösenord.."}
                             readonly={false} />
+
+                        <div className="form-check">
+                            <input type="checkbox" id="rememberMeCheck" className="form-check-input" onChange={this.toggleRememberMe} checked={this.state.rememberMe} />
+                            <label className="form-check-label">Kom ihåg mig</label>
+                        </div>
 
                         {this.renderMessage()}
                     </div>

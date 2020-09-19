@@ -6,6 +6,15 @@ namespace fitnessData.AppData
 {
     public class Seed
     {
+
+        public static ApplicationUser Create()
+        {
+            //password = test
+            var user = new ApplicationUser("user@test.com", "098F6BCD4621D373CADE4E832627B4F6");
+            user.Id = 1;
+            return user;
+        }
+
         public static List<Dish> Dishes()
         {
             return new List<Dish> {

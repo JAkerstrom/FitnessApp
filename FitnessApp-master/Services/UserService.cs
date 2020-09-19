@@ -1,18 +1,17 @@
-﻿using fitnessData.Auth;
-using fitnessData.Utils;
-using fitnessapp.Models;
+﻿using fitnessapp.Models;
 using fitnessapp.Models.RequestModels;
 using fitnessapp.Models.ResponseModels;
+using fitnessData.AppData;
+using fitnessData.Utils;
 using System.Linq;
-using System;
 
 namespace fitnessapp.Services
 {
     public class UserService
     {
-        private AuthDbContext _userContext;
+        private AppDataDbContext _userContext;
 
-        public UserService(AuthDbContext userContext)
+        public UserService(AppDataDbContext userContext)
         {
             _userContext = userContext;
         }

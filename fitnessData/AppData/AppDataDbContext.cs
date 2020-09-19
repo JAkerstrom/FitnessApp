@@ -11,6 +11,7 @@ namespace fitnessData.AppData
         public DbSet<Workout>          Workouts { get; set; }
         public DbSet<MealDish>         MealDishes { get; set; }
         public DbSet<WorkoutExcercise> WorkoutExcercises { get; set; }
+        public DbSet<ApplicationUser> Users { get; set; }
 
         public AppDataDbContext(DbContextOptions<AppDataDbContext> options)
         : base(options)
@@ -20,6 +21,10 @@ namespace fitnessData.AppData
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApplicationUser>().HasData(
+               Seed.Create()
+            );
 
             modelBuilder.Entity<MealDish>().HasKey(k => new { k.DishId, k.MealId });
             modelBuilder.Entity<WorkoutExcercise>().HasKey(k => new { k.ExcerciseId, k.WorkoutId });
