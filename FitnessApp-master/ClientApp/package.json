@@ -20,7 +20,7 @@
     "react-date-picker": "8.0.1"
   },
   "devDependencies": {
-    "ajv": "^6.0.0",
+    "ajv": "^6.12.3",
     "cross-env": "^5.2.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-plugin-flowtype": "^2.50.3",
